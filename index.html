@@ -515,25 +515,38 @@
        
        <div class="grid sm:grid-cols-2 gap-8 sm:gap-10">
         <div class="relative group">
-         <input type="text" id="nombre" name="nombre" required placeholder=" " class="floating-input peer w-full px-5 sm:px-6 py-4 sm:py-5 rounded-xl text-white font-light cursor-text text-base sm:text-lg">
+         <input type="text" id="nombre" name="Nombre" required placeholder=" " class="floating-input peer w-full px-5 sm:px-6 py-4 sm:py-5 rounded-xl text-white font-light cursor-text text-base sm:text-lg">
          <label data-i18n="form_name" for="nombre" class="floating-label text-sm sm:text-base">Nombre del Directivo</label>
         </div>
         <div class="relative group">
-         <input type="text" id="empresa" name="empresa" required placeholder=" " class="floating-input peer w-full px-5 sm:px-6 py-4 sm:py-5 rounded-xl text-white font-light cursor-text text-base sm:text-lg">
+         <input type="text" id="empresa" name="Empresa" required placeholder=" " class="floating-input peer w-full px-5 sm:px-6 py-4 sm:py-5 rounded-xl text-white font-light cursor-text text-base sm:text-lg">
          <label data-i18n="form_company" for="empresa" class="floating-label text-sm sm:text-base">Empresa / Negocio B2B</label>
         </div>
        </div>
        
-       <div class="relative group">
-        <input type="email" id="email" name="email" required placeholder=" " class="floating-input peer w-full px-5 sm:px-6 py-4 sm:py-5 rounded-xl text-white font-light cursor-text text-base sm:text-lg">
-        <label data-i18n="form_email" for="email" class="floating-label text-sm sm:text-base">Correo Corporativo</label>
+       <div class="grid sm:grid-cols-2 gap-8 sm:gap-10">
+           <div class="relative group">
+            <input type="email" id="email" name="Email" required placeholder=" " class="floating-input peer w-full px-5 sm:px-6 py-4 sm:py-5 rounded-xl text-white font-light cursor-text text-base sm:text-lg">
+            <label data-i18n="form_email" for="email" class="floating-label text-sm sm:text-base">Correo Corporativo</label>
+           </div>
+           <div class="relative group">
+            <select id="servicio" name="Servicio" required class="floating-input peer w-full px-5 sm:px-6 py-4 sm:py-5 rounded-xl text-white font-light cursor-pointer text-base sm:text-lg appearance-none bg-transparent">
+                <option value="" disabled selected hidden></option>
+                <option value="IA Readiness Audit" class="bg-black text-silver">IA Readiness Audit</option>
+                <option value="Implementación Core" class="bg-black text-silver">Implementación Core</option>
+                <option value="Soporte y Mantenimiento" class="bg-black text-silver">Soporte y Mantenimiento</option>
+            </select>
+            <label data-i18n="form_service" for="servicio" class="floating-label text-sm sm:text-base">Servicio de Interés</label>
+            <div class="absolute inset-y-0 right-0 flex items-center px-5 pointer-events-none text-gold">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+           </div>
        </div>
        
-       <div class="relative group">
-        <textarea id="mensaje" name="mensaje" rows="4" required placeholder=" " class="floating-input peer w-full px-5 sm:px-6 py-4 sm:py-5 rounded-xl text-white font-light resize-none cursor-text text-base sm:text-lg"></textarea>
+       <div class="relative group mt-8 sm:mt-10">
+        <textarea id="mensaje" name="Mensaje" rows="4" required placeholder=" " class="floating-input peer w-full px-5 sm:px-6 py-4 sm:py-5 rounded-xl text-white font-light resize-none cursor-text text-base sm:text-lg"></textarea>
         <label data-i18n="form_message" for="mensaje" class="floating-label text-sm sm:text-base">¿Cuál es el mayor cuello de botella en tu operación hoy?</label>
        </div>
-       
        <div class="text-center pt-6 sm:pt-10">
         <button type="submit" id="submit-btn" class="btn-gold px-10 sm:px-16 py-5 sm:py-6 bg-gold text-deep-black font-orbitron font-black text-base sm:text-2xl rounded-xl w-full sm:w-auto shadow-[0_0_40px_rgba(212,175,55,0.6)] uppercase tracking-[0.2em] flex items-center justify-center gap-4 mx-auto cursor-pointer magnetic" data-strength="40"> 
             <span data-i18n="form_btn">SISTEMA EN LÍNEA</span>
@@ -582,7 +595,7 @@
 
   <script>
         /* =========================================
-           MOTOR DE TRADUCCIÓN (EN/ES)
+           MOTOR DE TRADUCCIÓN (EN/ES) - ACTUALIZADO
         ========================================= */
         const i18n = {
             es: {
@@ -610,7 +623,7 @@
                 roi_title: "Calculadora de <span class='text-gold golden-glow'>Fricción</span>", roi_sub: "¿Cuánto capital literal estás perdiendo por no automatizar?",
                 roi_label_1: "Horas manuales perdidas a la semana:", roi_label_2: "Costo operativo por hora (USD):", roi_result_text: "Fuga de Capital Mensual", roi_result_sub: "Nuestra arquitectura centralizada recupera este margen y lo inyecta directo a tu rentabilidad.",
                 contact_title: "Inicia la <span class='text-gold golden-glow'>Evolución</span>", contact_sub: "Solicita tu Readiness Audit y descubre tu potencial de escalabilidad.",
-                form_name: "Nombre del Directivo", form_company: "Empresa / Negocio B2B", form_email: "Correo Corporativo", form_message: "¿Cuál es el mayor cuello de botella en tu operación hoy?", form_btn: "SISTEMA EN LÍNEA",
+                form_name: "Nombre del Directivo", form_company: "Empresa / Negocio B2B", form_email: "Correo Corporativo", form_service: "Servicio de Interés", form_message: "¿Cuál es el mayor cuello de botella en tu operación hoy?", form_btn: "SISTEMA EN LÍNEA",
                 success_title: "Señal Recibida", success_sub: "Nuestros algoritmos han procesado tu solicitud. Nos pondremos en contacto pronto.",
                 footer_terms: "Términos y Servicios", footer_privacy: "Privacidad Comercial", footer_ceo: "Admin & Fundador", footer_rights: "Todos los derechos reservados."
             },
@@ -639,7 +652,7 @@
                 roi_title: "Friction <span class='text-gold golden-glow'>Calculator</span>", roi_sub: "How much literal capital are you losing by not automating?",
                 roi_label_1: "Manual hours lost per week:", roi_label_2: "Operational cost per hour (USD):", roi_result_text: "Monthly Capital Leak", roi_result_sub: "Our centralized architecture recovers this margin and injects it directly into your profitability.",
                 contact_title: "Start the <span class='text-gold golden-glow'>Evolution</span>", contact_sub: "Request your Readiness Audit and discover your scalability potential.",
-                form_name: "Executive Name", form_company: "B2B Company", form_email: "Corporate Email", form_message: "What is the biggest bottleneck in your operation today?", form_btn: "SYSTEM ONLINE",
+                form_name: "Executive Name", form_company: "B2B Company", form_email: "Corporate Email", form_service: "Service of Interest", form_message: "What is the biggest bottleneck in your operation today?", form_btn: "SYSTEM ONLINE",
                 success_title: "Signal Received", success_sub: "Our algorithms have processed your request. We will contact you soon.",
                 footer_terms: "Terms and Services", footer_privacy: "Commercial Privacy", footer_ceo: "Admin & Founder", footer_rights: "All rights reserved."
             }
