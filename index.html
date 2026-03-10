@@ -39,7 +39,7 @@
         @media (hover: hover) and (pointer: fine) { * { cursor: none !important; } }
 
         /* =========================================
-           CURSOR AURA ELEGANT (NUEVO DISEÑO)
+           CURSOR AURA ELEGANT 
         ========================================= */
         #cursor-core { width: 6px; height: 6px; background: #D4AF37; border-radius: 50%; position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); z-index: 99999999; pointer-events: none; box-shadow: 0 0 10px #D4AF37; transition: transform 0.2s; }
         #cursor-aura { width: 34px; height: 34px; border: 1.5px solid rgba(212,175,55,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); z-index: 99999998; pointer-events: none; transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; box-shadow: inset 0 0 10px rgba(212,175,55,0.1), 0 0 10px rgba(212,175,55,0.1); }
@@ -51,7 +51,7 @@
         @media (pointer: coarse) { * { cursor: auto !important; } #cursor-core, #cursor-aura { display: none !important; } }
 
         /* =========================================
-           PRELOADER 15 SEGUNDOS
+           PRELOADER 15 SEGUNDOS (TERMINAL HACKER)
         ========================================= */
         #preloader { position: fixed; inset: 0; z-index: 9999999; background: #030303; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
         .loader-line { width: 300px; height: 2px; background: rgba(212,175,55,0.1); margin-top: 30px; position: relative; overflow: hidden; border-radius: 2px;}
@@ -87,10 +87,10 @@
         @media (max-width: 1024px) { .sidebar { display: none; } }
 
         /* =========================================
-           MOTOR 3D Y EFECTOS
+           MOTOR 3D ESTABILIZADO (CERO JUMPS)
         ========================================= */
         .card-3d-wrapper { perspective: 1200px; transform-style: preserve-3d; }
-        .spotlight-card { position: relative; background: rgba(8, 8, 8, 0.85); border-radius: 1rem; overflow: hidden; transition: transform 0.1s ease, box-shadow 0.3s ease; transform-style: preserve-3d; border: 1px solid rgba(212, 175, 55, 0.15); backdrop-filter: blur(10px); }
+        .spotlight-card { position: relative; background: rgba(8, 8, 8, 0.85); border-radius: 1rem; overflow: hidden; transition: transform 0.3s ease-out, box-shadow 0.3s ease; transform-style: preserve-3d; border: 1px solid rgba(212, 175, 55, 0.15); backdrop-filter: blur(10px); }
         .spotlight-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit; background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.1), transparent 40%); opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 3; }
         .spotlight-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit; background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.15), transparent 40%); opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1; }
         @media (hover: hover) and (pointer: fine) {
@@ -100,6 +100,7 @@
         .tilt-content { transform: translateZ(40px); position: relative; z-index: 2; transition: transform 0.3s ease; pointer-events: none;}
         .golden-glow { text-shadow: 0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.1); }
         
+        /* BOTONES E INPUTS */
         .btn-gold { position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.2, 0, 0, 1); border: 1px solid rgba(212,175,55,0.6); z-index: 1; }
         .btn-gold::before { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, #D4AF37, #E5C66B); z-index: -1; transition: opacity 0.3s ease; }
         .btn-gold::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transition: left 0.6s ease; z-index: 0; }
@@ -116,6 +117,7 @@
         .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
         #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #030303, #D4AF37, #E5C66B); z-index: 100000; width: 0%; box-shadow: 0 0 15px #D4AF37; transition: width 0.1s; }
 
+        /* Range Slider */
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #D4AF37; cursor: pointer; margin-top: -10px; box-shadow: 0 0 20px rgba(212,175,55,0.8); transition: transform 0.1s, background 0.3s; border: 2px solid #030303; }
         input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.3); background: #E5C66B; box-shadow: 0 0 25px #E5C66B;}
@@ -128,10 +130,12 @@
         #process-timeline-fill { position: absolute; left: 24px; top: 0; width: 2px; background: #D4AF37; box-shadow: 0 0 15px #D4AF37; z-index: 1; height: 0%; transition: height 0.1s linear; }
         @media (min-width: 640px) { #process-timeline-track, #process-timeline-fill { left: 40px; } }
         
-        /* FAQ Styles */
+        /* =========================================
+           FAQ FIX (ROTACIÓN AISLADA)
+        ========================================= */
         details > summary { list-style: none; cursor: pointer; }
         details > summary::-webkit-details-marker { display: none; }
-        details[open] summary span { transform: rotate(45deg); color: #E5C66B; }
+        details[open] summary .faq-icon { transform: rotate(45deg); color: #E5C66B; }
         details[open] summary { border-bottom-color: transparent; }
         details[open] .faq-content { animation: slideDown 0.3s ease-out forwards; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
@@ -196,7 +200,7 @@
        <a href="#filosofia" data-i18n="nav_filosofia" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">Filosofía</a> 
        <a href="#servicios" data-i18n="nav_servicios" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">Arquitectura</a> 
        <a href="#proceso" data-i18n="nav_proceso" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">Despliegue</a> 
-       <a href="#faq" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">FAQ</a> 
+       <a href="#faq-section" data-i18n="nav_faq" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">FAQ</a> 
        <a href="#contacto" data-i18n="nav_contacto" class="btn-gold px-7 py-2.5 text-deep-black font-orbitron font-bold rounded-sm uppercase tracking-widest text-xs cursor-pointer magnetic" data-strength="20">Auditoría</a>
        <button id="lang-toggle-desktop" class="font-mono text-gold border border-gold/40 px-3 py-1 rounded hover:bg-gold/20 transition-all cursor-pointer text-xs hover:shadow-[0_0_10px_rgba(212,175,55,0.4)]">EN</button>
       </div>
@@ -214,7 +218,7 @@
       <a href="#filosofia" data-i18n="nav_filosofia" class="block text-silver hover:text-gold text-base uppercase tracking-widest">Filosofía</a> 
       <a href="#servicios" data-i18n="nav_servicios" class="block text-silver hover:text-gold text-base uppercase tracking-widest">Arquitectura</a> 
       <a href="#proceso" data-i18n="nav_proceso" class="block text-silver hover:text-gold text-base uppercase tracking-widest">Despliegue</a> 
-      <a href="#faq" class="block text-silver hover:text-gold text-base uppercase tracking-widest">FAQ</a> 
+      <a href="#faq-section" data-i18n="nav_faq" class="block text-silver hover:text-gold text-base uppercase tracking-widest">FAQ</a> 
       <a href="#contacto" data-i18n="nav_contacto_btn" class="block px-5 py-4 mt-6 bg-gold text-deep-black font-bold font-orbitron rounded shadow-[0_0_20px_rgba(212,175,55,0.4)]">INICIA TU EVOLUCIÓN</a>
      </div>
     </div>
@@ -236,7 +240,7 @@
              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
              <div class="w-3 h-3 rounded-full bg-gold/80"></div>
              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-             <span class="ml-2 text-[10px] text-gold/40">Terminal AURAIC-OS v4.0</span>
+             <span class="ml-2 text-[10px] text-gold/40">Terminal AURAIC-OS v5.0</span>
          </div>
          <div class="text-gold/80">root@auraic-ai:~# <span id="typewriter" class="text-silver typing-cursor"></span></div>
      </div>
@@ -269,29 +273,45 @@
       <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-6 break-word-safe scramble-text" data-i18n="phil_title" data-scramble="Nuestra Filosofía">Nuestra <span class="text-gold golden-glow">Filosofía</span></h2>
       <div class="w-16 sm:w-24 h-1 bg-gold mx-auto rounded-full shadow-[0_0_20px_rgba(212,175,55,1)]"></div>
      </div>
-     <div class="grid md:grid-cols-2 gap-8 sm:gap-12 max-w-5xl mx-auto">
+     
+     <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8 sm:gap-10 max-w-7xl mx-auto">
+      
       <div class="card-3d-wrapper">
-       <div class="spotlight-card p-8 sm:p-14 relative hover-tilt h-full">
+       <div class="spotlight-card p-8 sm:p-12 relative hover-tilt h-full">
         <div class="relative z-10 tilt-content">
-         <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gold/10 rounded-full flex items-center justify-center mb-6 sm:mb-8 border border-gold/40 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
-             <svg class="w-8 h-8 sm:w-10 sm:h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+         <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6 sm:mb-8 border border-gold/40 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+             <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
          </div>
-         <h3 data-i18n="phil_m_title" class="font-orbitron text-xl sm:text-3xl font-bold text-gold mb-4 sm:mb-6 uppercase tracking-widest">Misión</h3>
-         <p data-i18n="phil_m_text" class="text-silver/80 leading-relaxed text-sm sm:text-lg font-light break-word-safe">Mapear procesos complejos y transformarlos en arquitecturas ágiles. Buscamos maximizar tu ROI devolviéndole a tu equipo cientos de horas operativas mensuales mediante automatización robusta con n8n.</p>
+         <h3 data-i18n="phil_m_title" class="font-orbitron text-xl sm:text-2xl font-bold text-gold mb-4 uppercase tracking-widest">Misión</h3>
+         <p data-i18n="phil_m_text" class="text-silver/80 leading-relaxed text-sm sm:text-base font-light break-word-safe">Mapear procesos complejos y transformarlos en arquitecturas ágiles. Buscamos maximizar tu ROI devolviéndole a tu equipo cientos de horas operativas mensuales mediante automatización robusta con n8n.</p>
         </div>
        </div>
       </div>
+      
       <div class="card-3d-wrapper">
-       <div class="spotlight-card p-8 sm:p-14 relative hover-tilt h-full">
+       <div class="spotlight-card p-8 sm:p-12 relative hover-tilt h-full">
         <div class="relative z-10 tilt-content">
-         <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gold/10 rounded-full flex items-center justify-center mb-6 sm:mb-8 border border-gold/40 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
-             <svg class="w-8 h-8 sm:w-10 sm:h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+         <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6 sm:mb-8 border border-gold/40 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+             <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
          </div>
-         <h3 data-i18n="phil_v_title" class="font-orbitron text-xl sm:text-3xl font-bold text-gold mb-4 sm:mb-6 uppercase tracking-widest">Visión</h3>
-         <p data-i18n="phil_v_text" class="text-silver/80 leading-relaxed text-sm sm:text-lg font-light break-word-safe">Ser el brazo tecnológico e invisible de las empresas líderes B2B. Establecer la IA no como una herramienta aislada, sino como el tejido central que conecta, decide y ejecuta 24/7.</p>
+         <h3 data-i18n="phil_v_title" class="font-orbitron text-xl sm:text-2xl font-bold text-gold mb-4 uppercase tracking-widest">Visión</h3>
+         <p data-i18n="phil_v_text" class="text-silver/80 leading-relaxed text-sm sm:text-base font-light break-word-safe">Ser el brazo tecnológico e invisible de las empresas líderes B2B. Establecer la IA no como una herramienta aislada, sino como el tejido central que conecta, decide y ejecuta 24/7.</p>
         </div>
        </div>
       </div>
+
+      <div class="card-3d-wrapper md:col-span-2 lg:col-span-1">
+       <div class="spotlight-card p-8 sm:p-12 relative hover-tilt h-full border-gold/50 shadow-[0_0_30px_rgba(212,175,55,0.1)]">
+        <div class="relative z-10 tilt-content">
+         <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6 sm:mb-8 border border-gold/40 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+             <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+         </div>
+         <h3 data-i18n="phil_val_title" class="font-orbitron text-xl sm:text-2xl font-bold text-gold mb-4 uppercase tracking-widest">Valores</h3>
+         <p data-i18n="phil_val_text" class="text-silver/80 leading-relaxed text-sm sm:text-base font-light break-word-safe">Humildad técnica, responsabilidad corporativa y transparencia total. Integramos tecnología avanzada asegurando que la IA potencie a tu equipo humano, operando siempre bajo ética B2B.</p>
+        </div>
+       </div>
+      </div>
+
      </div>
     </div>
    </section>
@@ -316,9 +336,11 @@
       </div>
       
       <div class="card-3d-wrapper reveal" style="transition-delay: 100ms;">
-       <div class="spotlight-card p-8 sm:p-12 flex flex-col items-center text-center border-gold/50 shadow-[0_0_40px_rgba(212,175,55,0.2)] hover-tilt h-full z-10">
-        <div class="absolute -top-4 bg-gold text-deep-black font-bold font-orbitron text-[10px] sm:text-xs px-4 sm:px-6 py-1.5 rounded-full tracking-widest tilt-content shadow-[0_0_15px_#D4AF37]">NÚCLEO</div>
-        <div class="w-24 h-24 sm:w-28 sm:h-28 mb-6 sm:mb-8 p-4 bg-gradient-to-br from-gold/20 to-transparent rounded-full border-2 border-gold flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.4)] tilt-content">
+       <div class="spotlight-card p-8 sm:p-12 flex flex-col items-center text-center border-gold/50 shadow-[0_0_40px_rgba(212,175,55,0.2)] hover-tilt h-full z-10 relative">
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-gold to-gold-light text-deep-black font-bold font-orbitron text-[10px] sm:text-xs px-6 py-1 rounded-b-md tracking-[0.2em] shadow-[0_0_15px_#D4AF37] z-20">
+            NÚCLEO
+        </div>
+        <div class="w-24 h-24 sm:w-28 sm:h-28 mb-6 sm:mb-8 mt-4 p-4 bg-gradient-to-br from-gold/20 to-transparent rounded-full border-2 border-gold flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.4)] tilt-content">
          <svg fill="none" stroke="#D4AF37" stroke-width="1.5" viewBox="0 0 24 24" class="w-12 h-12 sm:w-14 sm:h-14"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
         </div>
         <h3 data-i18n="serv_2_title" class="font-orbitron text-xl sm:text-3xl font-bold text-gold mb-4 tilt-content">Implementación Core</h3>
@@ -386,7 +408,7 @@
        </div>
    </section>
 
-   <section id="faq" class="py-20 sm:py-32 px-4 relative z-10">
+   <section id="faq-section" class="py-20 sm:py-32 px-4 relative z-10">
        <div class="max-w-4xl mx-auto reveal">
            <div class="text-center mb-16 sm:mb-20">
                <h2 data-i18n="faq_title" class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-6 scramble-text" data-scramble="Preguntas Frecuentes">Preguntas <span class="text-gold golden-glow">Frecuentes</span></h2>
@@ -397,7 +419,7 @@
                <details class="spotlight-card group cursor-pointer transition-all duration-300 open:border-gold/50 open:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
                    <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
                        <span data-i18n="faq_1_q">¿Necesito conocimientos técnicos en mi equipo?</span>
-                       <span class="text-gold text-2xl font-light transform transition-transform duration-300 group-open:rotate-45">+</span>
+                       <span class="faq-icon text-gold text-3xl font-light transform transition-transform duration-300">+</span>
                    </summary>
                    <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_1_a">
                        Absolutamente no. AURAIC AI se encarga de diseñar y mantener toda la arquitectura en el backend (n8n). Tu equipo seguirá utilizando sus herramientas del día a día (WhatsApp, Gmail, Excel o su CRM actual), pero ahora la IA hará el trabajo pesado de forma invisible.
@@ -407,7 +429,7 @@
                <details class="spotlight-card group cursor-pointer transition-all duration-300 open:border-gold/50 open:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
                    <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
                        <span data-i18n="faq_2_q">¿Cuánto tiempo tarda la implementación?</span>
-                       <span class="text-gold text-2xl font-light transform transition-transform duration-300 group-open:rotate-45">+</span>
+                       <span class="faq-icon text-gold text-3xl font-light transform transition-transform duration-300">+</span>
                    </summary>
                    <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_2_a">
                        La fase de "IA Readiness Audit" toma de 5 a 7 días hábiles. Una vez aprobado el plano arquitectónico, el desarrollo del "Core" suele estar funcional y generando retorno de inversión (ROI) en un promedio de 2 a 3 semanas, dependiendo de la complejidad.
@@ -417,7 +439,7 @@
                <details class="spotlight-card group cursor-pointer transition-all duration-300 open:border-gold/50 open:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
                    <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
                        <span data-i18n="faq_3_q">¿Qué pasa si mis softwares actuales no tienen API?</span>
-                       <span class="text-gold text-2xl font-light transform transition-transform duration-300 group-open:rotate-45">+</span>
+                       <span class="faq-icon text-gold text-3xl font-light transform transition-transform duration-300">+</span>
                    </summary>
                    <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_3_a">
                        Nuestra especialidad es la integración. Si un software es antiguo o cerrado, utilizamos Webhooks personalizados o RPA (Automatización Robótica de Procesos) para extraer y enviar la información, logrando que sistemas "aislados" se comuniquen con la IA.
@@ -427,7 +449,7 @@
                <details class="spotlight-card group cursor-pointer transition-all duration-300 open:border-gold/50 open:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
                    <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
                        <span data-i18n="faq_4_q">¿Mis datos corporativos están seguros con la IA?</span>
-                       <span class="text-gold text-2xl font-light transform transition-transform duration-300 group-open:rotate-45">+</span>
+                       <span class="faq-icon text-gold text-3xl font-light transform transition-transform duration-300">+</span>
                    </summary>
                    <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_4_a">
                        La seguridad es nuestra prioridad. Firmamos un NDA antes de iniciar. Además, operamos bajo políticas de "Zero-Data-Retention" con las APIs de OpenAI, lo que significa que tu información privada NUNCA se utiliza para entrenar modelos públicos.
@@ -437,7 +459,7 @@
                <details class="spotlight-card group cursor-pointer transition-all duration-300 open:border-gold/50 open:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
                    <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
                        <span data-i18n="faq_5_q">¿El servicio de soporte incluye actualizaciones?</span>
-                       <span class="text-gold text-2xl font-light transform transition-transform duration-300 group-open:rotate-45">+</span>
+                       <span class="faq-icon text-gold text-3xl font-light transform transition-transform duration-300">+</span>
                    </summary>
                    <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_5_a">
                        Sí. El campo de la Inteligencia Artificial avanza cada semana. Nuestro plan de "Mantenimiento y Soporte" garantiza que tu infraestructura (VPS/Cloud) esté en línea 24/7 y que tus flujos se actualicen automáticamente cuando salgan modelos más rápidos o económicos.
@@ -560,15 +582,16 @@
 
   <script>
         /* =========================================
-           MOTOR DE TRADUCCIÓN (EN/ES) CERO BUGS
+           MOTOR DE TRADUCCIÓN (EN/ES)
         ========================================= */
         const i18n = {
             es: {
-                nav_system: "Core Operativo", nav_filosofia: "Filosofía", nav_servicios: "Arquitectura", nav_proceso: "Despliegue", nav_roi: "ROI", nav_contacto: "Auditoría", nav_contacto_btn: "INICIA TU EVOLUCIÓN",
+                nav_system: "Core Operativo", nav_filosofia: "Filosofía", nav_servicios: "Arquitectura", nav_proceso: "Despliegue", nav_faq: "FAQ", nav_contacto: "Auditoría", nav_contacto_btn: "INICIA TU EVOLUCIÓN",
                 hero_btn: "Solicitar Auditoría",
                 phil_title: "Nuestra <span class='text-gold golden-glow'>Filosofía</span>",
                 phil_m_title: "Misión", phil_m_text: "Mapear procesos complejos y transformarlos en arquitecturas ágiles. Buscamos maximizar tu ROI devolviéndole a tu equipo cientos de horas operativas mensuales mediante automatización robusta con n8n.",
                 phil_v_title: "Visión", phil_v_text: "Ser el brazo tecnológico e invisible de las empresas líderes B2B. Establecer la IA no como una herramienta aislada, sino como el tejido central que conecta, decide y ejecuta 24/7.",
+                phil_val_title: "Valores", phil_val_text: "Humildad técnica, responsabilidad corporativa y transparencia total. Integramos tecnología avanzada asegurando que la IA potencie a tu equipo humano, operando siempre bajo ética B2B.",
                 serv_title: "Nuestro <span class='text-gold golden-glow'>Menú de Soluciones</span>", serv_sub: "Estructuras empaquetadas de alto rendimiento, diseñadas para escalabilidad empresarial.",
                 serv_1_title: "IA Readiness Audit", serv_1_text: "Diagnóstico profundo de procesos y cuellos de botella. Entregamos el plano arquitectónico y estratégico de tu nueva infraestructura automatizada.",
                 serv_2_title: "Implementación Core", serv_2_text: "Construcción integral de flujos en n8n. Conectamos e inyectamos modelos de IA a tus CRMs, ERPs y canales de comunicación en un ecosistema 24/7.",
@@ -592,11 +615,12 @@
                 footer_terms: "Términos y Servicios", footer_privacy: "Privacidad Comercial", footer_ceo: "Admin & Fundador", footer_rights: "Todos los derechos reservados."
             },
             en: {
-                nav_system: "Core System", nav_filosofia: "Philosophy", nav_servicios: "Architecture", nav_proceso: "Deployment", nav_roi: "ROI", nav_contacto: "Audit", nav_contacto_btn: "START YOUR EVOLUTION",
+                nav_system: "Core System", nav_filosofia: "Philosophy", nav_servicios: "Architecture", nav_proceso: "Deployment", nav_faq: "FAQ", nav_contacto: "Audit", nav_contacto_btn: "START YOUR EVOLUTION",
                 hero_btn: "Request Audit",
                 phil_title: "Our <span class='text-gold golden-glow'>Philosophy</span>",
                 phil_m_title: "Mission", phil_m_text: "Map complex processes and transform them into agile architectures. We seek to maximize your ROI by giving your team back hundreds of operational hours monthly through robust automation with n8n.",
                 phil_v_title: "Vision", phil_v_text: "To be the invisible technological arm of leading B2B companies. Establishing AI not as an isolated tool, but as the core fabric that connects, decides, and executes 24/7.",
+                phil_val_title: "Values", phil_val_text: "Technical humility, corporate responsibility, and total transparency. We integrate advanced technology ensuring AI empowers your human team, always operating under B2B ethics.",
                 serv_title: "Our <span class='text-gold golden-glow'>Solutions Menu</span>", serv_sub: "High-performance packaged structures, designed for enterprise scalability.",
                 serv_1_title: "AI Readiness Audit", serv_1_text: "Deep diagnosis of processes and bottlenecks. We deliver the architectural and strategic blueprint of your new automated infrastructure.",
                 serv_2_title: "Core Implementation", serv_2_text: "Comprehensive construction of flows in n8n. We connect and inject AI models into your CRMs, ERPs, and communication channels in a 24/7 ecosystem.",
@@ -728,10 +752,9 @@
                         fx.setText(el.getAttribute('data-scramble'));
                     }
                 });
-            }, 15000); // 15 Segundos Exactos solicitados por Fundador
+            }, 15000);
         });
 
-        // Generador de Logs para entretener los 15 segundos
         const logMessages = [
             "Conectando a nodos n8n globales...",
             "Validando certificados SSL/TLS...",
@@ -744,7 +767,6 @@
         ];
         let logIndex = 0;
         const terminalLogs = document.getElementById('terminal-logs');
-        
         function addLog() {
             if(logIndex < logMessages.length) {
                 const p = document.createElement('p');
@@ -752,7 +774,7 @@
                 p.innerText = `> ${logMessages[logIndex]}`;
                 if(terminalLogs) terminalLogs.appendChild(p);
                 logIndex++;
-                setTimeout(addLog, 1800); // Añade un log cada 1.8 segundos
+                setTimeout(addLog, 1800);
             }
         }
         setTimeout(addLog, 1000);
@@ -770,7 +792,7 @@
                 setTimeout(() => { el.innerHTML = ""; tw_i=0; typeWriter(); }, 6000);
             }
         }
-        setTimeout(typeWriter, 16000); // Inicia un segundo después de que quitan el preloader
+        setTimeout(typeWriter, 16000);
 
         /* =========================================
            OBSERVER (REVEAL, SCRAMBLE)
@@ -794,7 +816,7 @@
         });
 
         /* =========================================
-           MOTOR 3D Y CURSOR AURA (ORO/NEGRO)
+           MOTOR 3D ESTABILIZADO Y CURSOR
         ========================================= */
         const cursorCore = document.getElementById('cursor-core');
         const cursorAura = document.getElementById('cursor-aura');
@@ -813,7 +835,7 @@
                 el.addEventListener('mouseleave', () => { if(cursorAura) cursorAura.classList.remove('hovered'); if(cursorCore) cursorCore.classList.remove('hovered'); });
             });
 
-            // 3D Tilt + Glare Effect
+            // 3D Tilt Ajustado (Efecto super fluido y menos violento)
             document.querySelectorAll('.spotlight-card').forEach(card => {
                 card.addEventListener('mousemove', e => {
                     const rect = card.getBoundingClientRect();
@@ -824,15 +846,15 @@
 
                     if(card.classList.contains('hover-tilt')) {
                         const centerX = rect.width / 2; const centerY = rect.height / 2;
-                        const rotateX = ((y - centerY) / centerY) * -10; 
-                        const rotateY = ((x - centerX) / centerX) * 10;
+                        // Reducimos la sensibilidad de 10 a 6 para evitar bugs visuales
+                        const rotateX = ((y - centerY) / centerY) * -6; 
+                        const rotateY = ((x - centerX) / centerX) * 6;
                         card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
                     }
                 });
                 card.addEventListener('mouseleave', () => { if(card.classList.contains('hover-tilt')) card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; });
             });
 
-            // Magnetic Buttons
             document.querySelectorAll('.magnetic').forEach(btn => {
                 btn.addEventListener('mousemove', (e) => {
                     const rect = btn.getBoundingClientRect();
@@ -842,16 +864,15 @@
                 btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0px, 0px) scale(1)'; });
             });
             
-            // Nebulosas Parallax (Interactuan con el ratón)
             const nebula1 = document.getElementById('nebula1');
             const nebula2 = document.getElementById('nebula2');
             const nebula3 = document.getElementById('nebula3');
             window.addEventListener('mousemove', (e) => {
                 const x = e.clientX / window.innerWidth;
                 const y = e.clientY / window.innerHeight;
-                if(nebula1) nebula1.style.transform = `translate(${x * -120}px, ${y * -120}px)`; // Inverso
-                if(nebula2) nebula2.style.transform = `translate(${x * 80}px, ${y * 80}px)`; // Directo
-                if(nebula3) nebula3.style.transform = `translate(${x * -60}px, ${y * 50}px)`; // Mixto
+                if(nebula1) nebula1.style.transform = `translate(${x * -120}px, ${y * -120}px)`;
+                if(nebula2) nebula2.style.transform = `translate(${x * 80}px, ${y * 80}px)`;
+                if(nebula3) nebula3.style.transform = `translate(${x * -60}px, ${y * 50}px)`;
             });
         }
 
@@ -870,7 +891,6 @@
                 else { navbar.classList.remove('bg-[#030303]/95', 'shadow-[0_10px_30px_rgba(0,0,0,0.8)]', 'border-b', 'border-gold/30'); }
             }
 
-            // Timeline dinámica en Proceso
             const processSection = document.getElementById('process-container');
             const timelineFill = document.getElementById('process-timeline-fill');
             if(processSection && timelineFill) {
@@ -878,7 +898,6 @@
                 const sectionTop = rect.top;
                 const sectionHeight = rect.height;
                 const windowHeight = window.innerHeight;
-                
                 if(sectionTop < windowHeight / 2 && sectionTop > -sectionHeight) {
                     let progress = ((windowHeight / 2 - sectionTop) / sectionHeight) * 100;
                     progress = Math.max(0, Math.min(100, progress));
@@ -886,10 +905,8 @@
                 }
             }
 
-            // Actualizar Radar Lateral Activo
-            const sections = ['inicio', 'filosofia', 'servicios', 'proceso', 'faq', 'contacto'];
+            const sections = ['inicio', 'filosofia', 'servicios', 'proceso', 'faq-section', 'contacto'];
             const dots = document.querySelectorAll('.side-dot');
-            
             sections.forEach((id, index) => {
                 const element = document.getElementById(id);
                 if(element) {
@@ -903,7 +920,7 @@
         });
 
         /* =========================================
-           CALCULADORA DE ROI (ORO/NEGRO)
+           CALCULADORA DE ROI
         ========================================= */
         const horasInput = document.getElementById('horas-input');
         const costoInput = document.getElementById('costo-input');
@@ -913,19 +930,15 @@
             document.getElementById('costo-val').innerText = "$" + costoInput.value;
             const perdida = parseInt(horasInput.value) * parseInt(costoInput.value) * 4;
             document.getElementById('resultado-roi').innerText = "$" + perdida.toLocaleString('en-US');
-            
             const box = document.getElementById('roi-box');
-            if(perdida > 10000) {
-                box.style.boxShadow = 'inset 0 0 50px rgba(212,175,55,0.4), 0 0 30px rgba(212,175,55,0.2)';
-            } else {
-                box.style.boxShadow = 'inset 0 0 30px rgba(212,175,55,0.05)';
-            }
+            if(perdida > 10000) { box.style.boxShadow = 'inset 0 0 50px rgba(212,175,55,0.4), 0 0 30px rgba(212,175,55,0.2)'; } 
+            else { box.style.boxShadow = 'inset 0 0 30px rgba(212,175,55,0.05)'; }
         }
         if(horasInput) horasInput.addEventListener('input', calcularROI);
         if(costoInput) costoInput.addEventListener('input', calcularROI);
 
         /* =========================================
-           WEBHOOK Y MENU MÓVIL
+           WEBHOOK N8N Y MENU MÓVIL
         ========================================= */
         document.getElementById('mobile-menu-btn')?.addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
         document.querySelectorAll('#mobile-menu a').forEach(l => l.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden')));
@@ -939,6 +952,7 @@
             submitBtn.disabled = true;
 
             try {
+                // AQUÍ ESTÁ TU WEBHOOK DE N8N CONECTADO Y VERIFICADO
                 const response = await fetch(this.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(this))) });
                 if (response.ok || response.type === 'opaque') {
                     this.style.display = 'none';
