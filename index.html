@@ -15,12 +15,13 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 'deep-black': '#050505', 'gold': '#D4AF37', 'gold-light': '#E5C66B', 'silver': '#C0C0C0' },
+                    colors: { 'deep-black': '#030303', 'black-card': '#0a0a0a', 'gold': '#D4AF37', 'gold-light': '#E5C66B', 'silver': '#C0C0C0' },
                     fontFamily: { 'orbitron': ['Orbitron', 'sans-serif'], 'rajdhani': ['Rajdhani', 'sans-serif'], 'mono': ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'] },
-                    animation: { 'marquee': 'marquee 30s linear infinite', 'pulse-gold': 'pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' },
+                    animation: { 'marquee': 'marquee 30s linear infinite', 'pulse-gold': 'pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite', 'float': 'float 3s ease-in-out infinite' },
                     keyframes: {
                         marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-50%)' } },
-                        'pulse-gold': { '0%, 100%': { opacity: 1 }, '50%': { opacity: .5 } }
+                        'pulse-gold': { '0%, 100%': { opacity: 1, transform: 'scale(1)' }, '50%': { opacity: .7, transform: 'scale(1.05)' } },
+                        'float': { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } }
                     }
                 }
             }
@@ -28,56 +29,62 @@
     </script>
     
     <style>
-        /* SCROLLBAR PREMIUM */
+        /* SCROLLBAR & SELECTION */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-track { background: #030303; }
         ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #E5C66B; }
+        ::selection { background: rgba(212, 175, 55, 0.3); color: #fff; }
 
-        html, body { min-height: 100vh; width: 100%; margin: 0; padding: 0; overflow-x: hidden; background: #050505; color: #C0C0C0; }
+        html, body { min-height: 100vh; width: 100%; margin: 0; padding: 0; overflow-x: hidden; background: #030303; color: #C0C0C0; scroll-padding-top: 5rem; }
         
-        /* TARJETAS SIMPLES Y ELEGANTES */
-        .spotlight-card { background: rgba(10, 10, 10, 0.9); border-radius: 1rem; border: 1px solid rgba(212, 175, 55, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .spotlight-card:hover { border-color: rgba(212, 175, 55, 0.5); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        /* UI ELEMENTS */
+        .spotlight-card { background: rgba(10, 10, 10, 0.8); border-radius: 1rem; border: 1px solid rgba(212, 175, 55, 0.15); transition: all 0.4s ease; backdrop-filter: blur(10px); }
+        .spotlight-card:hover { border-color: rgba(212, 175, 55, 0.6); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 20px rgba(212, 175, 55, 0.05); }
         
-        /* BOTONES E INPUTS */
-        .btn-gold { background: linear-gradient(45deg, #D4AF37, #E5C66B); border: 1px solid rgba(212,175,55,0.6); transition: all 0.3s ease; }
-        .btn-gold:hover { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); color: #000 !important; transform: translateY(-2px); }
+        .btn-gold { background: linear-gradient(135deg, #D4AF37, #E5C66B, #D4AF37); background-size: 200% 200%; border: 1px solid rgba(212,175,55,0.8); transition: all 0.4s ease; }
+        .btn-gold:hover { box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); color: #000 !important; transform: translateY(-2px); background-position: 100% 0; }
 
-        .glass { background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(212,175,55,0.1); }
-        .floating-input { background: rgba(15,15,15,1); border: 1px solid rgba(212,175,55,0.2); color: #fff; transition: all 0.3s; }
-        .floating-input:focus { border-color: #D4AF37; outline: none; background: rgba(0,0,0,1); }
+        .glass { background: rgba(3, 3, 3, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212,175,55,0.1); }
+        
+        /* FLOATING INPUTS */
+        .floating-input { background: rgba(15,15,15,0.8); border: 1px solid rgba(212,175,55,0.2); color: #fff; transition: all 0.3s; }
+        .floating-input:focus { border-color: #D4AF37; outline: none; background: rgba(5,5,5,1); box-shadow: 0 0 15px rgba(212,175,55,0.1); }
         .floating-label { position: absolute; left: 1.25rem; top: 1rem; color: rgba(192,192,192,0.5); transition: all 0.2s ease; pointer-events: none; padding: 0 0.4rem; background: transparent; }
-        .floating-input:focus ~ .floating-label, .floating-input:not(:placeholder-shown) ~ .floating-label { top: -0.6rem; left: 1rem; font-size: 0.8rem; color: #D4AF37; background: #050505; border: 1px solid rgba(212,175,55,0.2); border-radius: 4px; }
+        .floating-input:focus ~ .floating-label, .floating-input:not(:placeholder-shown) ~ .floating-label { top: -0.6rem; left: 1rem; font-size: 0.75rem; color: #D4AF37; background: #030303; border: 1px solid rgba(212,175,55,0.3); border-radius: 4px; letter-spacing: 0.05em; }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        /* ANIMATIONS */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #D4AF37; z-index: 100000; width: 0%; transition: width 0.1s; }
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #D4AF37, #E5C66B); z-index: 100000; width: 0%; transition: width 0.2s ease-out; box-shadow: 0 0 10px rgba(212,175,55,0.5); }
 
-        /* Range Slider */
+        /* RANGE SLIDER */
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: #D4AF37; cursor: pointer; margin-top: -8px; transition: transform 0.2s; }
-        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #D4AF37; cursor: pointer; margin-top: -10px; transition: all 0.2s; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); background: #E5C66B; }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: rgba(212,175,55,0.2); border-radius: 2px; }
 
-        #process-timeline-track { position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: rgba(212, 175, 55, 0.1); z-index: 0; }
-        #process-timeline-fill { position: absolute; left: 24px; top: 0; width: 2px; background: #D4AF37; z-index: 1; height: 0%; transition: height 0.1s linear; }
+        /* TIMELINE */
+        #process-timeline-track { position: absolute; left: 18px; top: 0; bottom: 0; width: 2px; background: rgba(212, 175, 55, 0.1); z-index: 0; }
+        #process-timeline-fill { position: absolute; left: 18px; top: 0; width: 2px; background: #D4AF37; z-index: 1; height: 0%; transition: height 0.1s linear; box-shadow: 0 0 10px rgba(212,175,55,0.5); }
         @media (min-width: 640px) { #process-timeline-track, #process-timeline-fill { left: 40px; } }
         
+        /* FAQ ACCORDION */
         details > summary { list-style: none; cursor: pointer; }
         details > summary::-webkit-details-marker { display: none; }
         details[open] summary .faq-icon { transform: rotate(45deg); color: #E5C66B; }
         details[open] summary { border-bottom-color: transparent; }
-        details[open] .faq-content { animation: slideDown 0.3s ease-out forwards; }
+        details[open] .faq-content { animation: slideDown 0.4s ease-out forwards; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Modal Legal */
-        #modal-legal { display: none; position: fixed; inset: 0; z-index: 9999998; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 1rem; opacity: 0; transition: opacity 0.3s ease; }
+        /* MODAL */
+        #modal-legal { display: none; position: fixed; inset: 0; z-index: 9999998; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px); align-items: center; justify-content: center; padding: 1rem; opacity: 0; transition: opacity 0.3s ease; }
         #modal-legal.show { display: flex; opacity: 1; }
-        .modal-box { background: #0A0A0A; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 0.5rem; width: 100%; max-width: 800px; max-height: 85vh; overflow-y: auto; padding: 2.5rem; position: relative; }
-        .modal-box h2 { color: #D4AF37; }
-        .modal-box p, .modal-box ul { color: #C0C0C0; opacity: 0.9; line-height: 1.6; margin-bottom: 15px;}
-        .modal-box strong { color: #E5C66B; }
+        .modal-box { background: #080808; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 0.5rem; width: 100%; max-width: 800px; max-height: 85vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        
+        /* WHATSAPP FLOAT */
+        .wp-float { box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); transition: all 0.3s ease; }
+        .wp-float:hover { box-shadow: 0 0 30px rgba(37, 211, 102, 0.6); transform: translateY(-5px) scale(1.05); }
     </style>
 </head>
 <body class="w-full text-silver text-base sm:text-lg antialiased">
@@ -86,64 +93,62 @@
 
   <div class="content-wrapper w-full min-h-screen relative z-10">
    
-   <nav id="navbar" class="fixed top-0 left-0 right-0 z-[100] glass transition-transform duration-300">
+   <nav id="navbar" class="fixed top-0 left-0 right-0 z-[100] glass transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
      <div class="flex items-center justify-between h-20">
       <a href="#inicio" class="flex items-center space-x-3 group">
         <img src="logo.png" onerror="this.style.display='none';" alt="AURAIC AI Icon" class="w-10 sm:w-12 opacity-90 transition-transform duration-300 group-hover:scale-105">
         <span class="font-orbitron text-xl sm:text-2xl font-bold text-gold transition-colors tracking-widest whitespace-nowrap">AURAIC AI</span> 
       </a> 
-      
-      <div class="hidden md:flex items-center gap-2 border border-gold/20 rounded-full px-4 py-1.5 cursor-default">
-          <span class="w-2 h-2 rounded-full bg-gold animate-pulse-gold"></span>
-          <span class="text-[10px] font-mono text-gold/80 tracking-widest uppercase" data-i18n="nav_system">Core Operativo</span>
-      </div>
 
-      <div class="hidden lg:flex items-center space-x-8">
-       <a href="#filosofia" data-i18n="nav_filosofia" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">Filosofía</a> 
+      <div class="hidden lg:flex items-center space-x-7">
        <a href="#servicios" data-i18n="nav_servicios" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">Arquitectura</a> 
        <a href="#proceso" data-i18n="nav_proceso" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">Despliegue</a> 
+       <a href="#ejemplos" data-i18n="nav_ejemplos" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">Impacto</a>
+       <a href="#roi" data-i18n="nav_roi" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">ROI</a> 
        <a href="#faq-section" data-i18n="nav_faq" class="text-silver/80 hover:text-gold transition-colors font-medium tracking-widest text-xs uppercase cursor-pointer">FAQ</a> 
-       <a href="#contacto" data-i18n="nav_contacto" class="btn-gold px-7 py-2.5 text-deep-black font-orbitron font-bold rounded-sm uppercase tracking-widest text-xs cursor-pointer">Auditoría</a>
-       <button id="lang-toggle-desktop" class="font-mono text-gold border border-gold/40 px-3 py-1 rounded hover:bg-gold/20 transition-all cursor-pointer text-xs">EN</button>
+       <a href="#contacto" data-i18n="nav_contacto" class="btn-gold px-6 py-2.5 text-deep-black font-orbitron font-bold rounded-sm uppercase tracking-widest text-xs cursor-pointer shadow-lg">Auditoría</a>
+       <button id="lang-toggle-desktop" class="font-mono text-gold border border-gold/40 px-3 py-1.5 rounded hover:bg-gold/10 transition-all cursor-pointer text-xs font-bold">EN</button>
       </div>
       
-      <div class="lg:hidden flex items-center gap-4">
-        <button id="lang-toggle-mobile" class="font-mono text-gold border border-gold/40 px-2 py-1 rounded hover:bg-gold/20 transition-all cursor-pointer text-xs">EN</button>
-        <button id="mobile-menu-btn" class="text-gold p-2 cursor-pointer relative z-50">
-         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      <div class="lg:hidden flex items-center gap-3">
+        <button id="lang-toggle-mobile" class="font-mono text-gold border border-gold/40 px-3 py-1.5 rounded hover:bg-gold/10 transition-all cursor-pointer text-xs font-bold">EN</button>
+        <button id="mobile-menu-btn" class="text-gold p-2 cursor-pointer relative z-50 hover:bg-gold/10 rounded-md transition-colors">
+         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
         </button>
       </div>
      </div>
     </div>
-    <div id="mobile-menu" class="hidden lg:hidden glass border-t border-gold/20 absolute w-full shadow-lg">
-     <div class="px-4 py-6 space-y-4 text-center">
-      <a href="#filosofia" data-i18n="nav_filosofia" class="block text-silver hover:text-gold text-base uppercase tracking-widest">Filosofía</a> 
-      <a href="#servicios" data-i18n="nav_servicios" class="block text-silver hover:text-gold text-base uppercase tracking-widest">Arquitectura</a> 
-      <a href="#proceso" data-i18n="nav_proceso" class="block text-silver hover:text-gold text-base uppercase tracking-widest">Despliegue</a> 
-      <a href="#faq-section" data-i18n="nav_faq" class="block text-silver hover:text-gold text-base uppercase tracking-widest">FAQ</a> 
-      <a href="#contacto" data-i18n="nav_contacto_btn" class="block px-5 py-4 mt-6 btn-gold text-deep-black font-bold font-orbitron rounded">INICIA TU EVOLUCIÓN</a>
+    
+    <div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-[#030303]/98 backdrop-blur-xl border-t border-gold/20 shadow-2xl transition-all">
+     <div class="px-6 py-8 space-y-6 text-center">
+      <a href="#servicios" data-i18n="nav_servicios" class="block text-silver hover:text-gold text-sm font-semibold uppercase tracking-widest">Arquitectura</a> 
+      <a href="#proceso" data-i18n="nav_proceso" class="block text-silver hover:text-gold text-sm font-semibold uppercase tracking-widest">Despliegue</a> 
+      <a href="#ejemplos" data-i18n="nav_ejemplos" class="block text-silver hover:text-gold text-sm font-semibold uppercase tracking-widest">Impacto</a>
+      <a href="#roi" data-i18n="nav_roi" class="block text-silver hover:text-gold text-sm font-semibold uppercase tracking-widest">Calculadora ROI</a>
+      <a href="#faq-section" data-i18n="nav_faq" class="block text-silver hover:text-gold text-sm font-semibold uppercase tracking-widest">FAQ</a> 
+      <a href="#contacto" data-i18n="nav_contacto_btn" class="block w-full py-4 mt-6 btn-gold text-deep-black font-bold font-orbitron rounded text-sm shadow-xl">INICIA TU EVOLUCIÓN</a>
      </div>
     </div>
    </nav>
 
-   <section id="inicio" class="min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-4 relative">
-    <div class="text-center max-w-6xl mx-auto reveal">
-     <div class="logo-container mb-10 flex justify-center w-full">
-        <img src="logo.png" onerror="this.style.display='none';" alt="AURAIC AI Logo Oficial" class="w-64 sm:w-72 md:w-[400px] object-contain opacity-90">
+   <section id="inicio" class="min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-16 px-5 sm:px-8 relative">
+    <div class="text-center max-w-5xl mx-auto reveal active">
+     <div class="logo-container mb-8 sm:mb-12 flex justify-center w-full animate-float">
+        <img src="logo.png" onerror="this.style.display='none';" alt="AURAIC AI Logo Oficial" class="w-56 sm:w-80 md:w-[350px] object-contain opacity-95 drop-shadow-[0_0_25px_rgba(212,175,55,0.2)]">
      </div>
      
-     <h1 class="font-orbitron text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-wide uppercase">
+     <h1 class="font-orbitron text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-wide uppercase break-words">
          <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold via-gold-light to-gold" data-i18n="hero_title_1">Evolución Algorítmica</span> <br>
-         <span class="text-silver" data-i18n="hero_title_2">Para Tu Negocio B2B</span>
+         <span class="text-silver text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2 block" data-i18n="hero_title_2">Para Tu Negocio B2B</span>
      </h1>
      
-     <p class="text-silver/80 text-lg sm:text-xl font-light mb-12 max-w-2xl mx-auto" data-i18n="hero_desc">
-         Convertimos procesos corporativos complejos en arquitecturas autónomas. Recupera horas de tu equipo y escala sin límites.
+     <p class="text-silver/80 text-base sm:text-xl font-light mb-10 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0" data-i18n="hero_desc">
+         Convertimos procesos corporativos complejos en arquitecturas autónomas. Recupera horas de tu equipo y escala sin límites operativos.
      </p>
 
-     <div class="flex justify-center items-center">
-         <a href="#contacto" data-i18n="hero_btn" class="btn-gold text-deep-black font-orbitron font-bold text-sm sm:text-lg px-8 py-4 sm:px-12 sm:py-5 rounded uppercase tracking-widest flex items-center gap-3"> 
+     <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full px-4 sm:px-0">
+         <a href="#contacto" data-i18n="hero_btn" class="w-full sm:w-auto btn-gold text-deep-black font-orbitron font-bold text-sm sm:text-base px-8 py-4 rounded uppercase tracking-widest flex items-center justify-center gap-3"> 
              Solicitar Auditoría 
              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
          </a>
@@ -151,244 +156,257 @@
     </div>
    </section>
 
-   <div class="w-full bg-[#080808] border-y border-gold/10 overflow-hidden py-5 sm:py-8 relative z-10">
+   <div class="w-full bg-[#050505] border-y border-gold/15 py-8 sm:py-10 relative z-10">
+       <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-gold/10">
+           <div class="px-2">
+               <h4 class="font-orbitron text-2xl sm:text-4xl font-black text-gold mb-1 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">100%</h4>
+               <p class="text-silver/60 text-xs sm:text-sm uppercase tracking-widest font-bold" data-i18n="stat_1">A Medida</p>
+           </div>
+           <div class="px-2">
+               <h4 class="font-orbitron text-2xl sm:text-4xl font-black text-gold mb-1 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">24/7</h4>
+               <p class="text-silver/60 text-xs sm:text-sm uppercase tracking-widest font-bold" data-i18n="stat_2">Operación Core</p>
+           </div>
+           <div class="px-2">
+               <h4 class="font-orbitron text-2xl sm:text-4xl font-black text-gold mb-1 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">Zero</h4>
+               <p class="text-silver/60 text-xs sm:text-sm uppercase tracking-widest font-bold" data-i18n="stat_3">Retención Datos</p>
+           </div>
+           <div class="px-2">
+               <h4 class="font-orbitron text-2xl sm:text-4xl font-black text-gold mb-1 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">ROI</h4>
+               <p class="text-silver/60 text-xs sm:text-sm uppercase tracking-widest font-bold" data-i18n="stat_4">Garantizado</p>
+           </div>
+       </div>
+   </div>
+
+   <div class="w-full bg-[#080808] border-b border-gold/10 overflow-hidden py-4 relative z-10">
        <div class="absolute inset-0 z-10 pointer-events-none flex justify-between">
            <div class="w-16 sm:w-48 bg-gradient-to-r from-[#080808] to-transparent"></div>
            <div class="w-16 sm:w-48 bg-gradient-to-l from-[#080808] to-transparent"></div>
        </div>
-       <div class="w-[200%] flex animate-marquee opacity-60">
-           <div class="flex-1 flex justify-around items-center text-gold/50 font-orbitron text-lg sm:text-3xl font-black tracking-widest whitespace-nowrap">
+       <div class="w-[200%] flex animate-marquee opacity-40">
+           <div class="flex-1 flex justify-around items-center text-gold/80 font-orbitron text-sm sm:text-xl font-bold tracking-[0.2em] whitespace-nowrap">
                <span>n8n</span> • <span>OpenAI</span> • <span>WhatsApp API</span> • <span>Stripe</span> • <span>Google Cloud</span> • <span>Slack</span> • <span>HubSpot</span> •
                <span>n8n</span> • <span>OpenAI</span> • <span>WhatsApp API</span> • <span>Stripe</span> • <span>Google Cloud</span> • <span>Slack</span> • <span>HubSpot</span>
            </div>
        </div>
    </div>
 
-   <section id="filosofia" class="py-20 sm:py-32 px-4 relative z-10 bg-[#050505]">
-    <div class="max-w-7xl mx-auto reveal">
-     <div class="text-center mb-16 sm:mb-24">
-      <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-6" data-i18n="phil_title">Nuestra <span class="text-gold">Filosofía</span></h2>
-      <div class="w-16 sm:w-24 h-1 bg-gold mx-auto rounded-full"></div>
-     </div>
-     
-     <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8 sm:gap-10 max-w-7xl mx-auto">
-      <div class="spotlight-card p-8 sm:p-10 h-full">
-         <div class="w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-6 border border-gold/30">
-             <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-         </div>
-         <h3 data-i18n="phil_m_title" class="font-orbitron text-xl sm:text-2xl font-bold text-gold mb-4 uppercase tracking-widest">Misión</h3>
-         <p data-i18n="phil_m_text" class="text-silver/80 leading-relaxed text-sm sm:text-base font-light">Mapear procesos complejos y transformarlos en arquitecturas ágiles. Buscamos maximizar tu ROI devolviéndole a tu equipo cientos de horas operativas mensuales mediante automatización robusta con n8n.</p>
-      </div>
-      
-      <div class="spotlight-card p-8 sm:p-10 h-full">
-         <div class="w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-6 border border-gold/30">
-             <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-         </div>
-         <h3 data-i18n="phil_v_title" class="font-orbitron text-xl sm:text-2xl font-bold text-gold mb-4 uppercase tracking-widest">Visión</h3>
-         <p data-i18n="phil_v_text" class="text-silver/80 leading-relaxed text-sm sm:text-base font-light">Ser el brazo tecnológico e invisible de las empresas líderes B2B. Establecer la IA no como una herramienta aislada, sino como el tejido central que conecta, decide y ejecuta 24/7.</p>
-      </div>
-
-      <div class="spotlight-card p-8 sm:p-10 h-full md:col-span-2 lg:col-span-1 border-gold/40">
-         <div class="w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-6 border border-gold/30">
-             <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-         </div>
-         <h3 data-i18n="phil_val_title" class="font-orbitron text-xl sm:text-2xl font-bold text-gold mb-4 uppercase tracking-widest">Valores</h3>
-         <p data-i18n="phil_val_text" class="text-silver/80 leading-relaxed text-sm sm:text-base font-light">Humildad técnica, responsabilidad corporativa y transparencia total. Integramos tecnología avanzada asegurando que la IA potencie a tu equipo humano, operando siempre bajo ética B2B.</p>
-      </div>
-     </div>
-    </div>
-   </section>
-
-   <section id="servicios" class="py-20 sm:py-32 px-4 relative z-10 bg-[#080808]">
+   <section id="servicios" class="py-20 sm:py-32 px-5 sm:px-8 relative z-10 bg-gradient-to-b from-[#030303] to-[#080808]">
     <div class="max-w-7xl mx-auto">
      <div class="text-center mb-16 sm:mb-24 reveal">
       <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-4" data-i18n="serv_title">Nuestro <span class="text-gold">Menú de Soluciones</span></h2>
-      <p data-i18n="serv_sub" class="text-silver text-sm sm:text-xl max-w-2xl mx-auto font-light">Estructuras empaquetadas de alto rendimiento, diseñadas para escalabilidad empresarial.</p>
-      <div class="w-16 sm:w-24 h-1 bg-gold mx-auto mt-6 rounded-full"></div>
+      <p data-i18n="serv_sub" class="text-silver/80 text-sm sm:text-xl max-w-2xl mx-auto font-light leading-relaxed">Estructuras empaquetadas de alto rendimiento, diseñadas para escalabilidad empresarial.</p>
+      <div class="w-16 sm:w-24 h-1 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-6"></div>
      </div>
      
-     <div class="grid lg:grid-cols-3 gap-8 sm:gap-10">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10">
       <div class="spotlight-card p-8 sm:p-12 flex flex-col items-center text-center h-full reveal">
-        <div class="w-16 h-16 mb-6 p-4 bg-gold/5 rounded-full border border-gold/30 flex items-center justify-center">
+        <div class="w-16 h-16 mb-6 p-4 bg-gold/5 rounded-full border border-gold/30 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.1)]">
          <svg fill="none" stroke="#D4AF37" stroke-width="1.5" viewBox="0 0 24 24" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
         </div>
-        <h3 data-i18n="serv_1_title" class="font-orbitron text-lg sm:text-2xl font-bold text-white mb-4">IA Readiness Audit</h3>
+        <h3 data-i18n="serv_1_title" class="font-orbitron text-xl sm:text-2xl font-bold text-white mb-4">IA Readiness Audit</h3>
         <p data-i18n="serv_1_text" class="text-silver/70 leading-relaxed font-light text-sm sm:text-base">Diagnóstico profundo de procesos y cuellos de botella. Entregamos el plano arquitectónico y estratégico de tu nueva infraestructura automatizada.</p>
       </div>
       
-      <div class="spotlight-card p-8 sm:p-12 flex flex-col items-center text-center border-gold/50 h-full relative reveal" style="transition-delay: 100ms;">
-        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-gold text-deep-black font-bold font-orbitron text-[10px] sm:text-xs px-6 py-1 rounded-b-md tracking-widest">
+      <div class="spotlight-card p-8 sm:p-12 flex flex-col items-center text-center border-gold/50 h-full relative reveal shadow-[0_0_30px_rgba(212,175,55,0.15)]" style="transition-delay: 100ms;">
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-gold text-deep-black font-bold font-orbitron text-[10px] sm:text-xs px-6 py-1.5 rounded-b-md tracking-widest shadow-md">
             NÚCLEO
         </div>
-        <div class="w-20 h-20 mb-6 mt-4 bg-gold/10 rounded-full border-2 border-gold flex items-center justify-center">
+        <div class="w-20 h-20 mb-6 mt-4 bg-gold/10 rounded-full border-2 border-gold flex items-center justify-center animate-pulse-gold">
          <svg fill="none" stroke="#D4AF37" stroke-width="1.5" viewBox="0 0 24 24" class="w-10 h-10"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
         </div>
-        <h3 data-i18n="serv_2_title" class="font-orbitron text-xl sm:text-3xl font-bold text-gold mb-4">Implementación Core</h3>
-        <p data-i18n="serv_2_text" class="text-silver/70 leading-relaxed font-light text-sm sm:text-base">Construcción integral de flujos en n8n. Conectamos e inyectamos modelos de IA a tus CRMs, ERPs y canales de comunicación en un ecosistema 24/7.</p>
+        <h3 data-i18n="serv_2_title" class="font-orbitron text-2xl sm:text-3xl font-bold text-gold mb-4 drop-shadow-md">Implementación Core</h3>
+        <p data-i18n="serv_2_text" class="text-silver/80 leading-relaxed font-light text-sm sm:text-base">Construcción integral de flujos en n8n. Conectamos e inyectamos modelos de IA a tus CRMs, ERPs y canales de comunicación en un ecosistema 24/7.</p>
       </div>
       
       <div class="spotlight-card p-8 sm:p-12 flex flex-col items-center text-center h-full reveal" style="transition-delay: 200ms;">
-        <div class="w-16 h-16 mb-6 p-4 bg-gold/5 rounded-full border border-gold/30 flex items-center justify-center">
+        <div class="w-16 h-16 mb-6 p-4 bg-gold/5 rounded-full border border-gold/30 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.1)]">
          <svg fill="none" stroke="#D4AF37" stroke-width="1.5" viewBox="0 0 24 24" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
         </div>
-        <h3 data-i18n="serv_3_title" class="font-orbitron text-lg sm:text-2xl font-bold text-white mb-4">Mantenimiento y Soporte</h3>
+        <h3 data-i18n="serv_3_title" class="font-orbitron text-xl sm:text-2xl font-bold text-white mb-4">Mantenimiento y Soporte</h3>
         <p data-i18n="serv_3_text" class="text-silver/70 leading-relaxed font-light text-sm sm:text-base">La garantía operativa para tu agencia. Hosting en servidores dedicados (VPS/Cloud), actualización de modelos (OpenAI) y ajustes paramétricos continuos.</p>
       </div>
      </div>
     </div>
    </section>
 
-   <section id="proceso" class="py-20 sm:py-32 px-4 bg-[#050505] relative z-10 border-y border-gold/10">
+   <section id="proceso" class="py-20 sm:py-32 px-5 sm:px-8 bg-[#050505] relative z-10 border-y border-gold/10">
        <div class="max-w-4xl mx-auto reveal" id="process-container">
            <div class="text-center mb-16 sm:mb-24">
                <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-4" data-i18n="process_title">Metodología de <span class="text-gold">Trabajo</span></h2>
                <p data-i18n="process_sub" class="text-gold/80 tracking-widest uppercase text-xs sm:text-sm font-bold">Onboarding y Despliegue Estructurado</p>
            </div>
            
-           <div class="relative ml-2 sm:ml-8 space-y-12 sm:space-y-16 pb-8">
+           <div class="relative ml-4 sm:ml-8 space-y-16 sm:space-y-20 pb-8">
                
                <div id="process-timeline-track"></div>
                <div id="process-timeline-fill"></div>
 
                <div class="relative pl-12 sm:pl-20 group">
-                   <div class="absolute left-[8px] sm:left-[24px] top-1 w-8 h-8 sm:w-10 sm:h-10 bg-deep-black border-2 border-gold/40 rounded-full flex items-center justify-center transition-all duration-300 z-10">
+                   <div class="absolute left-[2px] sm:left-[24px] top-1 w-8 h-8 sm:w-10 sm:h-10 bg-black-card border-2 border-gold/40 rounded-full flex items-center justify-center transition-all duration-300 z-10 group-hover:border-gold group-hover:scale-110 shadow-lg">
                        <span class="text-gold font-bold text-sm sm:text-base font-orbitron">1</span>
                    </div>
-                   <h3 data-i18n="step1_t" class="font-orbitron text-xl sm:text-3xl text-white mb-3">Kick-off & Acuerdos</h3>
-                   <p data-i18n="step1_d" class="text-silver/70 font-light text-sm sm:text-lg leading-relaxed">Reunión estratégica para definir objetivos. Firmamos el NDA (Acuerdo de Confidencialidad) para garantizar la seguridad total de la información corporativa.</p>
+                   <h3 data-i18n="step1_t" class="font-orbitron text-xl sm:text-3xl text-white mb-3 tracking-wide">Kick-off & Acuerdos</h3>
+                   <p data-i18n="step1_d" class="text-silver/70 font-light text-sm sm:text-lg leading-relaxed max-w-2xl">Reunión estratégica para definir objetivos. Firmamos el NDA (Acuerdo de Confidencialidad) para garantizar la seguridad total de la información corporativa.</p>
                </div>
                
                <div class="relative pl-12 sm:pl-20 group">
-                   <div class="absolute left-[8px] sm:left-[24px] top-1 w-8 h-8 sm:w-10 sm:h-10 bg-deep-black border-2 border-gold/40 rounded-full flex items-center justify-center transition-all duration-300 z-10">
+                   <div class="absolute left-[2px] sm:left-[24px] top-1 w-8 h-8 sm:w-10 sm:h-10 bg-black-card border-2 border-gold/40 rounded-full flex items-center justify-center transition-all duration-300 z-10 group-hover:border-gold group-hover:scale-110 shadow-lg">
                        <span class="text-gold font-bold text-sm sm:text-base font-orbitron">2</span>
                    </div>
-                   <h3 data-i18n="step2_t" class="font-orbitron text-xl sm:text-3xl text-white mb-3">Gestión de Accesos</h3>
-                   <p data-i18n="step2_d" class="text-silver/70 font-light text-sm sm:text-lg leading-relaxed">A través de bóvedas de seguridad encriptadas (ej. LastPass), nos provees acceso a tus herramientas. Configuramos tu propia clave de API (OpenAI) para control financiero total.</p>
+                   <h3 data-i18n="step2_t" class="font-orbitron text-xl sm:text-3xl text-white mb-3 tracking-wide">Gestión de Accesos</h3>
+                   <p data-i18n="step2_d" class="text-silver/70 font-light text-sm sm:text-lg leading-relaxed max-w-2xl">A través de bóvedas de seguridad encriptadas (ej. LastPass), nos provees acceso a tus herramientas. Configuramos tu propia clave de API (OpenAI) para control financiero total.</p>
                </div>
                
                <div class="relative pl-12 sm:pl-20 group">
-                   <div class="absolute left-[8px] sm:left-[24px] top-1 w-8 h-8 sm:w-10 sm:h-10 bg-deep-black border-2 border-gold/40 rounded-full flex items-center justify-center transition-all duration-300 z-10">
+                   <div class="absolute left-[2px] sm:left-[24px] top-1 w-8 h-8 sm:w-10 sm:h-10 bg-black-card border-2 border-gold/40 rounded-full flex items-center justify-center transition-all duration-300 z-10 group-hover:border-gold group-hover:scale-110 shadow-lg">
                        <span class="text-gold font-bold text-sm sm:text-base font-orbitron">3</span>
                    </div>
-                   <h3 data-i18n="step3_t" class="font-orbitron text-xl sm:text-3xl text-white mb-3">Desarrollo Transparente</h3>
-                   <p data-i18n="step3_d" class="text-silver/70 font-light text-sm sm:text-lg leading-relaxed">Mantenemos comunicación exclusiva (Slack/WhatsApp) y un tablero de proyectos (Trello/Notion) donde observas en tiempo real el progreso de cada flujo algorítmico.</p>
+                   <h3 data-i18n="step3_t" class="font-orbitron text-xl sm:text-3xl text-white mb-3 tracking-wide">Desarrollo Transparente</h3>
+                   <p data-i18n="step3_d" class="text-silver/70 font-light text-sm sm:text-lg leading-relaxed max-w-2xl">Mantenemos comunicación exclusiva y un tablero de proyectos donde observas en tiempo real el progreso de cada flujo algorítmico sin cajas negras.</p>
                </div>
                
                <div class="relative pl-12 sm:pl-20 group">
-                   <div class="absolute left-[8px] sm:left-[24px] top-1 w-8 h-8 sm:w-10 sm:h-10 bg-gold rounded-full flex items-center justify-center z-10 border-2 border-gold">
+                   <div class="absolute left-[2px] sm:left-[24px] top-1 w-8 h-8 sm:w-10 sm:h-10 bg-gold rounded-full flex items-center justify-center z-10 border-2 border-gold shadow-[0_0_15px_rgba(212,175,55,0.6)] group-hover:scale-110 transition-transform">
                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-deep-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
                    </div>
-                   <h3 data-i18n="step4_t" class="font-orbitron text-xl sm:text-3xl text-gold mb-3">Lanzamiento & Retorno</h3>
-                   <p data-i18n="step4_d" class="text-silver/70 font-light text-sm sm:text-lg leading-relaxed">Las operaciones pasan a un servidor seguro. Tu equipo delega tareas manuales a la IA y se enfoca directamente en escalar el negocio.</p>
+                   <h3 data-i18n="step4_t" class="font-orbitron text-xl sm:text-3xl text-gold mb-3 tracking-wide">Lanzamiento & Retorno</h3>
+                   <p data-i18n="step4_d" class="text-silver/80 font-light text-sm sm:text-lg leading-relaxed max-w-2xl">Las operaciones pasan a un servidor seguro. Tu equipo delega tareas manuales a la IA y se enfoca directamente en escalar el negocio.</p>
                </div>
            </div>
        </div>
    </section>
 
-   <section id="faq-section" class="py-20 sm:py-32 px-4 relative z-10 bg-[#080808]">
+   <section id="ejemplos" class="py-20 sm:py-32 px-5 sm:px-8 relative z-10 bg-gradient-to-b from-[#050505] to-[#080808]">
+       <div class="max-w-6xl mx-auto reveal">
+           <div class="text-center mb-16 sm:mb-24">
+               <h2 data-i18n="ex_title" class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-4">Evidencia de <span class="text-gold">Impacto</span></h2>
+               <p data-i18n="ex_sub" class="text-silver/80 text-sm sm:text-xl font-light">Arquitecturas reales diseñadas para el mundo corporativo.</p>
+               <div class="w-16 sm:w-24 h-1 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-6"></div>
+           </div>
+
+           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+               <div class="spotlight-card p-5 sm:p-8 flex flex-col justify-start">
+                   <div class="w-full rounded-lg overflow-hidden border border-gold/20 mb-6 group cursor-pointer relative bg-black/80 aspect-video shadow-inner">
+                       <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
+                       <img src="mapeo.jpg" alt="Mapeo de Procesos" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                   </div>
+                   <div class="w-full text-left px-2">
+                       <h3 data-i18n="ex_1_title" class="font-orbitron text-xl sm:text-2xl font-bold text-gold mb-3 uppercase tracking-widest">Mapeo Estratégico</h3>
+                       <p data-i18n="ex_1_desc" class="text-silver/70 font-light text-sm sm:text-base leading-relaxed">Diagnóstico visual detallado. Identificamos los cuellos de botella exactos en su operación y trazamos el plano arquitectónico antes de escribir una sola línea de código.</p>
+                   </div>
+               </div>
+
+               <div class="spotlight-card p-5 sm:p-8 flex flex-col justify-start">
+                   <div class="w-full rounded-lg overflow-hidden border border-gold/20 mb-6 group cursor-pointer relative bg-black/80 aspect-video shadow-inner">
+                       <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
+                       <img src="workflow.png" alt="Workflow n8n" class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700">
+                   </div>
+                   <div class="w-full text-left px-2">
+                       <h3 data-i18n="ex_2_title" class="font-orbitron text-xl sm:text-2xl font-bold text-gold mb-3 uppercase tracking-widest">Arquitectura Algorítmica</h3>
+                       <p data-i18n="ex_2_desc" class="text-silver/70 font-light text-sm sm:text-base leading-relaxed">Implementación técnica del core operativo dentro de n8n. Múltiples agentes de IA interconectados tomando decisiones y ejecutando acciones en la nube 24/7.</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <section id="roi" class="py-20 sm:py-32 px-5 sm:px-8 bg-[#030303] relative z-10 border-y border-gold/15 shadow-[inset_0_0_50px_rgba(0,0,0,0.8)]">
+       <div class="max-w-4xl mx-auto reveal">
+           <div class="text-center mb-12 sm:mb-20">
+               <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-4" data-i18n="roi_title">Calculadora de <span class="text-gold">Fricción</span></h2>
+               <p data-i18n="roi_sub" class="text-silver/80 text-sm sm:text-xl max-w-2xl mx-auto font-light">¿Cuánto capital estás perdiendo al mes por no automatizar?</p>
+           </div>
+           
+           <div class="spotlight-card p-6 sm:p-12 border-gold/40 relative bg-black-card overflow-hidden">
+               <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+               
+               <div class="mb-10 sm:mb-12 relative z-10">
+                   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-silver mb-4 sm:mb-5 font-orbitron gap-2">
+                       <label data-i18n="roi_label_1" class="text-sm sm:text-lg">Horas manuales perdidas a la semana:</label>
+                       <span id="horas-val" class="text-gold font-bold text-3xl sm:text-4xl drop-shadow-md">40 h</span>
+                   </div>
+                   <input type="range" id="horas-input" min="10" max="300" value="40" class="w-full">
+               </div>
+               
+               <div class="mb-12 sm:mb-16 relative z-10">
+                   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-silver mb-4 sm:mb-5 font-orbitron gap-2">
+                       <label data-i18n="roi_label_2" class="text-sm sm:text-lg">Costo operativo por hora (USD):</label>
+                       <span id="costo-val" class="text-gold font-bold text-3xl sm:text-4xl drop-shadow-md">$15</span>
+                   </div>
+                   <input type="range" id="costo-input" min="5" max="150" value="15" class="w-full">
+               </div>
+               
+               <div class="text-center p-8 sm:p-10 bg-[#020202] rounded-xl border border-gold/30 relative shadow-inner" id="roi-box">
+                   <p data-i18n="roi_result_text" class="text-gold/80 uppercase tracking-widest text-xs sm:text-sm mb-3 font-bold">Fuga de Capital Estimada (Mensual)</p>
+                   <p class="font-orbitron text-5xl sm:text-7xl font-black text-white mb-4 drop-shadow-[0_0_15px_rgba(212,175,55,0.2)]" id="resultado-roi">$2,400</p>
+                   <p data-i18n="roi_result_sub" class="text-silver/60 font-light text-xs sm:text-base max-w-lg mx-auto">Nuestra arquitectura centralizada recupera este margen de error y lo convierte en utilidad pura para tu empresa.</p>
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <section id="faq-section" class="py-20 sm:py-32 px-5 sm:px-8 relative z-10 bg-[#080808]">
        <div class="max-w-4xl mx-auto reveal">
            <div class="text-center mb-16 sm:mb-20">
                <h2 data-i18n="faq_title" class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-6">Preguntas <span class="text-gold">Frecuentes</span></h2>
-               <div class="w-16 sm:w-24 h-1 bg-gold mx-auto rounded-full"></div>
+               <div class="w-16 sm:w-24 h-1 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto"></div>
            </div>
            
            <div class="space-y-4 sm:space-y-6">
                <details class="spotlight-card group cursor-pointer">
-                   <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
-                       <span data-i18n="faq_1_q">¿Necesito conocimientos técnicos en mi equipo?</span>
-                       <span class="faq-icon text-gold text-2xl font-light transform transition-transform duration-300">+</span>
+                   <summary class="font-orbitron text-base sm:text-xl font-bold text-white p-5 sm:p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
+                       <span data-i18n="faq_1_q" class="pr-4">¿Necesito conocimientos técnicos en mi equipo?</span>
+                       <span class="faq-icon text-gold text-2xl font-light transform transition-transform duration-300 flex-shrink-0">+</span>
                    </summary>
-                   <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_1_a">
+                   <div class="faq-content px-5 sm:px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_1_a">
                        Absolutamente no. AURAIC AI se encarga de diseñar y mantener toda la arquitectura en el backend (n8n). Tu equipo seguirá utilizando sus herramientas del día a día (WhatsApp, Gmail, Excel o su CRM actual), pero ahora la IA hará el trabajo pesado de forma invisible.
                    </div>
                </details>
                
                <details class="spotlight-card group cursor-pointer">
-                   <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
-                       <span data-i18n="faq_2_q">¿Cuánto tiempo tarda la implementación?</span>
-                       <span class="faq-icon text-gold text-2xl font-light transform transition-transform duration-300">+</span>
+                   <summary class="font-orbitron text-base sm:text-xl font-bold text-white p-5 sm:p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
+                       <span data-i18n="faq_2_q" class="pr-4">¿Cuánto tiempo tarda la implementación?</span>
+                       <span class="faq-icon text-gold text-2xl font-light transform transition-transform duration-300 flex-shrink-0">+</span>
                    </summary>
-                   <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_2_a">
+                   <div class="faq-content px-5 sm:px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_2_a">
                        La fase de "IA Readiness Audit" toma de 5 a 7 días hábiles. Una vez aprobado el plano arquitectónico, el desarrollo del "Core" suele estar funcional y generando retorno de inversión (ROI) en un promedio de 2 a 3 semanas, dependiendo de la complejidad.
                    </div>
                </details>
 
                <details class="spotlight-card group cursor-pointer">
-                   <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
-                       <span data-i18n="faq_3_q">¿Qué pasa si mis softwares actuales no tienen API?</span>
-                       <span class="faq-icon text-gold text-2xl font-light transform transition-transform duration-300">+</span>
+                   <summary class="font-orbitron text-base sm:text-xl font-bold text-white p-5 sm:p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
+                       <span data-i18n="faq_3_q" class="pr-4">¿Qué pasa si mis softwares actuales no tienen API?</span>
+                       <span class="faq-icon text-gold text-2xl font-light transform transition-transform duration-300 flex-shrink-0">+</span>
                    </summary>
-                   <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_3_a">
+                   <div class="faq-content px-5 sm:px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_3_a">
                        Nuestra especialidad es la integración. Si un software es antiguo o cerrado, utilizamos Webhooks personalizados o RPA (Automatización Robótica de Procesos) para extraer y enviar la información, logrando que sistemas "aislados" se comuniquen con la IA.
                    </div>
                </details>
 
                <details class="spotlight-card group cursor-pointer">
-                   <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
-                       <span data-i18n="faq_4_q">¿Mis datos corporativos están seguros con la IA?</span>
-                       <span class="faq-icon text-gold text-2xl font-light transform transition-transform duration-300">+</span>
+                   <summary class="font-orbitron text-base sm:text-xl font-bold text-white p-5 sm:p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
+                       <span data-i18n="faq_4_q" class="pr-4">¿Mis datos corporativos están seguros con la IA?</span>
+                       <span class="faq-icon text-gold text-2xl font-light transform transition-transform duration-300 flex-shrink-0">+</span>
                    </summary>
-                   <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_4_a">
+                   <div class="faq-content px-5 sm:px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_4_a">
                        La seguridad es nuestra prioridad. Firmamos un NDA antes de iniciar. Además, operamos bajo políticas de "Zero-Data-Retention" con las APIs de OpenAI, lo que significa que tu información privada NUNCA se utiliza para entrenar modelos públicos.
                    </div>
                </details>
-
-               <details class="spotlight-card group cursor-pointer">
-                   <summary class="font-orbitron text-lg sm:text-xl font-bold text-white p-6 outline-none flex justify-between items-center hover:text-gold transition-colors">
-                       <span data-i18n="faq_5_q">¿El servicio de soporte incluye actualizaciones?</span>
-                       <span class="faq-icon text-gold text-2xl font-light transform transition-transform duration-300">+</span>
-                   </summary>
-                   <div class="faq-content px-6 pb-6 text-silver/70 font-light text-sm sm:text-base border-t border-gold/10 mt-2 pt-4 leading-relaxed" data-i18n="faq_5_a">
-                       Sí. El campo de la Inteligencia Artificial avanza cada semana. Nuestro plan de "Mantenimiento y Soporte" garantiza que tu infraestructura (VPS/Cloud) esté en línea 24/7 y que tus flujos se actualicen automáticamente cuando salgan modelos más rápidos o económicos.
-                   </div>
-               </details>
            </div>
        </div>
    </section>
 
-   <section id="roi" class="py-20 sm:py-32 px-4 bg-[#050505] relative z-10 border-y border-gold/10">
-       <div class="max-w-4xl mx-auto reveal">
-           <div class="text-center mb-12 sm:mb-20">
-               <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-4" data-i18n="roi_title">Calculadora de <span class="text-gold">Fricción</span></h2>
-               <p data-i18n="roi_sub" class="text-silver/80 text-sm sm:text-xl max-w-2xl mx-auto font-light">¿Cuánto capital estás perdiendo por no automatizar?</p>
-           </div>
-           
-           <div class="spotlight-card p-8 sm:p-12 border border-gold/30 relative">
-               <div class="mb-10 sm:mb-12 relative z-10">
-                   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-silver mb-3 sm:mb-5 font-orbitron gap-2">
-                       <label data-i18n="roi_label_1" class="text-sm sm:text-lg">Horas manuales perdidas a la semana:</label>
-                       <span id="horas-val" class="text-gold font-bold text-2xl sm:text-3xl">40 h</span>
-                   </div>
-                   <input type="range" id="horas-input" min="10" max="300" value="40" class="w-full cursor-pointer">
-               </div>
-               <div class="mb-12 sm:mb-16 relative z-10">
-                   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-silver mb-3 sm:mb-5 font-orbitron gap-2">
-                       <label data-i18n="roi_label_2" class="text-sm sm:text-lg">Costo operativo por hora (USD):</label>
-                       <span id="costo-val" class="text-gold font-bold text-2xl sm:text-3xl">$15</span>
-                   </div>
-                   <input type="range" id="costo-input" min="5" max="150" value="15" class="w-full cursor-pointer">
-               </div>
-               
-               <div class="text-center p-8 bg-[#020202] rounded-xl border border-gold/20 relative" id="roi-box">
-                   <p data-i18n="roi_result_text" class="text-gold/60 uppercase tracking-widest text-xs sm:text-sm mb-3 font-bold">Fuga de Capital Mensual</p>
-                   <p class="font-orbitron text-5xl sm:text-6xl font-black text-white mb-4" id="resultado-roi">$2,400</p>
-                   <p data-i18n="roi_result_sub" class="text-silver/70 font-light text-sm sm:text-base">Nuestra arquitectura centralizada recupera este margen para tu empresa.</p>
-               </div>
-           </div>
-       </div>
-   </section>
-
-   <section id="contacto" class="py-24 sm:py-32 px-4 relative z-10 bg-[#080808]">
+   <section id="contacto" class="py-24 sm:py-32 px-5 sm:px-8 relative z-10 bg-gradient-to-t from-[#020202] to-[#080808]">
     <div class="max-w-4xl mx-auto reveal">
      <div class="text-center mb-16 sm:mb-20">
       <h2 class="font-orbitron text-3xl sm:text-5xl font-black text-white mb-4" data-i18n="contact_title">Inicia la <span class="text-gold">Evolución</span></h2>
       <p data-i18n="contact_sub" class="text-silver/80 text-sm sm:text-xl font-light">Solicita tu Readiness Audit y descubre tu potencial de escalabilidad.</p>
      </div>
      
-     <div class="spotlight-card p-8 sm:p-12 border border-gold/40">
+     <div class="spotlight-card p-6 sm:p-12 border-gold/40 shadow-2xl">
       <form id="contact-form" action="https://n8n.srv1404404.hstgr.cloud/webhook/contacto-auraic" method="POST" class="space-y-8">
        
-       <div class="grid sm:grid-cols-2 gap-8">
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
         <div class="relative group">
          <input type="text" id="nombre" name="Nombre" required placeholder=" " class="floating-input peer w-full px-5 py-4 rounded-md text-white font-light text-base">
          <label data-i18n="form_name" for="nombre" class="floating-label text-sm">Nombre del Directivo</label>
@@ -399,7 +417,7 @@
         </div>
        </div>
        
-       <div class="grid sm:grid-cols-2 gap-8">
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
            <div class="relative group">
             <input type="email" id="email" name="Email" required placeholder=" " class="floating-input peer w-full px-5 py-4 rounded-md text-white font-light text-base">
             <label data-i18n="form_email" for="email" class="floating-label text-sm">Correo Corporativo</label>
@@ -407,9 +425,9 @@
            <div class="relative group">
             <select id="servicio" name="Servicio" required class="floating-input peer w-full px-5 py-4 rounded-md text-white font-light cursor-pointer text-base appearance-none bg-transparent">
                 <option value="" disabled selected hidden></option>
-                <option value="IA Readiness Audit" class="bg-black text-silver">IA Readiness Audit</option>
-                <option value="Implementación Core" class="bg-black text-silver">Implementación Core</option>
-                <option value="Soporte y Mantenimiento" class="bg-black text-silver">Soporte y Mantenimiento</option>
+                <option value="IA Readiness Audit" class="bg-[#050505] text-silver">IA Readiness Audit</option>
+                <option value="Implementación Core" class="bg-[#050505] text-silver">Implementación Core</option>
+                <option value="Soporte y Mantenimiento" class="bg-[#050505] text-silver">Soporte y Mantenimiento</option>
             </select>
             <label data-i18n="form_service" for="servicio" class="floating-label text-sm">Servicio de Interés</label>
             <div class="absolute inset-y-0 right-0 flex items-center px-5 pointer-events-none text-gold">
@@ -420,10 +438,10 @@
        
        <div class="relative group">
         <textarea id="mensaje" name="Mensaje" rows="4" required placeholder=" " class="floating-input peer w-full px-5 py-4 rounded-md text-white font-light resize-none text-base"></textarea>
-        <label data-i18n="form_message" for="mensaje" class="floating-label text-sm">¿Cuál es el mayor cuello de botella en tu operación hoy?</label>
+        <label data-i18n="form_message" for="mensaje" class="floating-label text-sm">¿Cuál es el mayor cuello de botella en su operación hoy?</label>
        </div>
        <div class="text-center pt-6">
-        <button type="submit" id="submit-btn" class="btn-gold px-10 py-4 text-deep-black font-orbitron font-bold text-lg rounded-md w-full sm:w-auto uppercase tracking-widest flex items-center justify-center gap-4 mx-auto cursor-pointer"> 
+        <button type="submit" id="submit-btn" class="btn-gold px-10 py-4 text-deep-black font-orbitron font-bold text-base sm:text-lg rounded-md w-full sm:w-auto uppercase tracking-widest flex items-center justify-center gap-4 mx-auto cursor-pointer shadow-[0_0_20px_rgba(212,175,55,0.3)]"> 
             <span data-i18n="form_btn">SISTEMA EN LÍNEA</span>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
         </button>
@@ -431,7 +449,7 @@
       </form>
 
       <div id="success-message" class="hidden text-center py-12 animate-[fadeIn_0.5s_ease-in-out]">
-       <div class="w-20 h-20 mx-auto mb-6 bg-gold/10 rounded-full flex items-center justify-center border border-gold">
+       <div class="w-20 h-20 mx-auto mb-6 bg-gold/10 rounded-full flex items-center justify-center border border-gold shadow-[0_0_30px_rgba(212,175,55,0.2)]">
            <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
        </div>
        <h3 data-i18n="success_title" class="font-orbitron text-2xl sm:text-4xl font-bold text-gold mb-4">Señal Recibida</h3>
@@ -442,27 +460,31 @@
     </div>
    </section>
 
-   <footer class="py-12 px-4 bg-[#020202] border-t border-gold/20">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+   <footer class="py-12 px-5 sm:px-8 bg-[#020202] border-t border-gold/20">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
      <div class="flex items-center space-x-3 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" onclick="document.getElementById('inicio').scrollIntoView({behavior:'smooth'})">
-        <img src="logo.png" onerror="this.style.display='none';" alt="AURAIC AI" class="w-10">
-        <span class="font-orbitron text-xl font-bold text-silver">AURAIC AI</span>
+        <img src="logo.png" onerror="this.style.display='none';" alt="AURAIC AI" class="w-10 sm:w-12">
+        <span class="font-orbitron text-xl sm:text-2xl font-bold text-silver">AURAIC AI</span>
      </div>
-     <div class="text-silver/50 text-xs font-light flex gap-6 uppercase tracking-widest">
+     <div class="text-silver/50 text-xs sm:text-sm font-light flex gap-6 uppercase tracking-widest">
          <button type="button" onclick="abrirModalLegal('terms')" data-i18n="footer_terms" class="hover:text-gold transition-colors">Términos</button>
          <button type="button" onclick="abrirModalLegal('privacy')" data-i18n="footer_privacy" class="hover:text-gold transition-colors">Privacidad</button>
      </div>
      <div class="text-center md:text-right">
-         <p class="text-gold/90 text-xs font-orbitron tracking-widest uppercase mb-1">Erick Arellano <span class="text-silver/30 mx-2">|</span> <span data-i18n="footer_ceo">Admin & Fundador</span></p>
-         <p class="text-silver/40 text-[10px]">© 2026 AURAIC AI. <span data-i18n="footer_rights">Todos los derechos reservados.</span></p>
+         <p class="text-gold/90 text-xs sm:text-sm font-orbitron tracking-widest uppercase mb-1 drop-shadow-sm">Erick Arellano <span class="text-silver/30 mx-2">|</span> <span data-i18n="footer_ceo">Admin & Fundador</span></p>
+         <p class="text-silver/40 text-[10px] sm:text-xs tracking-wider">© 2026 AURAIC AI. <span data-i18n="footer_rights">Todos los derechos reservados.</span></p>
      </div>
     </div>
    </footer>
   </div>
 
+  <a href="https://wa.me/523300000000" target="_blank" rel="noopener noreferrer" class="wp-float fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-[100] bg-[#25D366] text-white p-4 rounded-full flex items-center justify-center hover:bg-[#128C7E] cursor-pointer" aria-label="Contactar por WhatsApp">
+      <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+
   <div id="modal-legal" class="fixed inset-0 z-[9999998] bg-black/90 backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none flex items-center justify-center px-4" style="display: none;">
-      <div class="modal-box text-left">
-          <button type="button" onclick="cerrarModalLegal()" class="absolute top-4 right-6 text-silver hover:text-gold text-4xl font-light cursor-pointer">&times;</button>
+      <div class="modal-box text-left border-t-4 border-t-gold">
+          <button type="button" onclick="cerrarModalLegal()" class="absolute top-4 right-6 text-silver hover:text-gold text-4xl font-light cursor-pointer transition-colors">&times;</button>
           <h2 id="modal-title" class="font-orbitron text-xl sm:text-2xl font-bold text-gold mb-6 border-b border-gold/30 pb-3 pr-10"></h2>
           <div id="modal-content" class="text-silver/80 font-light text-sm sm:text-base"></div>
       </div>
@@ -474,8 +496,9 @@
         ========================================= */
         const i18n = {
             es: {
-                nav_system: "Core Operativo", nav_filosofia: "Filosofía", nav_servicios: "Arquitectura", nav_proceso: "Despliegue", nav_faq: "FAQ", nav_contacto: "Auditoría", nav_contacto_btn: "INICIA TU EVOLUCIÓN",
-                hero_title_1: "Evolución Algorítmica", hero_title_2: "Para Tu Negocio B2B", hero_desc: "Convertimos procesos corporativos complejos en arquitecturas autónomas. Recupera horas de tu equipo y escala sin límites.", hero_btn: "Solicitar Auditoría",
+                nav_system: "Core Operativo", nav_filosofia: "Filosofía", nav_servicios: "Arquitectura", nav_proceso: "Despliegue", nav_ejemplos: "Impacto", nav_roi: "ROI", nav_faq: "FAQ", nav_contacto: "Auditoría", nav_contacto_btn: "INICIA TU EVOLUCIÓN",
+                hero_title_1: "Evolución Algorítmica", hero_title_2: "Para Tu Negocio B2B", hero_desc: "Convertimos procesos corporativos complejos en arquitecturas autónomas. Recupera horas de tu equipo y escala sin límites operativos.", hero_btn: "Solicitar Auditoría",
+                stat_1: "A Medida", stat_2: "Operación Core", stat_3: "Retención Datos", stat_4: "Garantizado",
                 phil_title: "Nuestra <span class='text-gold'>Filosofía</span>",
                 phil_m_title: "Misión", phil_m_text: "Mapear procesos complejos y transformarlos en arquitecturas ágiles. Buscamos maximizar tu ROI devolviéndole a tu equipo cientos de horas operativas mensuales mediante automatización robusta con n8n.",
                 phil_v_title: "Visión", phil_v_text: "Ser el brazo tecnológico e invisible de las empresas líderes B2B. Establecer la IA no como una herramienta aislada, sino como el tejido central que conecta, decide y ejecuta 24/7.",
@@ -487,24 +510,27 @@
                 process_title: "Metodología de <span class='text-gold'>Trabajo</span>", process_sub: "Onboarding y Despliegue Estructurado",
                 step1_t: "Kick-off & Acuerdos", step1_d: "Reunión estratégica para definir objetivos. Firmamos el NDA (Acuerdo de Confidencialidad) para garantizar la seguridad total de la información corporativa.",
                 step2_t: "Gestión de Accesos", step2_d: "A través de bóvedas de seguridad encriptadas (ej. LastPass), nos provees acceso a tus herramientas. Configuramos tu propia clave de API (OpenAI) para control financiero total.",
-                step3_t: "Desarrollo Transparente", step3_d: "Mantenemos comunicación exclusiva (Slack/WhatsApp) y un tablero de proyectos (Trello/Notion) donde observas en tiempo real el progreso de cada flujo algorítmico.",
+                step3_t: "Desarrollo Transparente", step3_d: "Mantenemos comunicación exclusiva y un tablero de proyectos donde observas en tiempo real el progreso de cada flujo algorítmico sin cajas negras.",
                 step4_t: "Lanzamiento & Retorno", step4_d: "Las operaciones pasan a un servidor seguro. Tu equipo delega tareas manuales a la IA y se enfoca directamente en escalar el negocio.",
+                ex_title: "Evidencia de <span class='text-gold'>Impacto</span>", ex_sub: "Arquitecturas reales diseñadas para el mundo corporativo.",
+                ex_1_title: "Mapeo Estratégico", ex_1_desc: "Diagnóstico visual detallado. Identificamos los cuellos de botella exactos en su operación y trazamos el plano arquitectónico antes de escribir una sola línea de código.",
+                ex_2_title: "Arquitectura Algorítmica", ex_2_desc: "Implementación técnica del core operativo dentro de n8n. Múltiples agentes de IA interconectados tomando decisiones y ejecutando acciones en la nube 24/7.",
+                roi_title: "Calculadora de <span class='text-gold'>Fricción</span>", roi_sub: "¿Cuánto capital estás perdiendo al mes por no automatizar?",
+                roi_label_1: "Horas manuales perdidas a la semana:", roi_label_2: "Costo operativo por hora (USD):", roi_result_text: "Fuga de Capital Estimada (Mensual)", roi_result_sub: "Nuestra arquitectura centralizada recupera este margen de error y lo convierte en utilidad pura para tu empresa.",
                 faq_title: "Preguntas <span class='text-gold'>Frecuentes</span>",
                 faq_1_q: "¿Necesito conocimientos técnicos en mi equipo?", faq_1_a: "Absolutamente no. AURAIC AI se encarga de diseñar y mantener toda la arquitectura en el backend (n8n). Tu equipo seguirá utilizando sus herramientas del día a día (WhatsApp, Gmail, Excel o su CRM actual), pero ahora la IA hará el trabajo pesado de forma invisible.",
                 faq_2_q: "¿Cuánto tiempo tarda la implementación?", faq_2_a: "La fase de 'IA Readiness Audit' toma de 5 a 7 días hábiles. Una vez aprobado el plano arquitectónico, el desarrollo del 'Core' suele estar funcional y generando retorno de inversión (ROI) en un promedio de 2 a 3 semanas, dependiendo de la complejidad.",
                 faq_3_q: "¿Qué pasa si mis softwares actuales no tienen API?", faq_3_a: "Nuestra especialidad es la integración. Si un software es antiguo o cerrado, utilizamos Webhooks personalizados o RPA (Automatización Robótica de Procesos) para extraer y enviar la información, logrando que sistemas 'aislados' se comuniquen con la IA.",
                 faq_4_q: "¿Mis datos corporativos están seguros con la IA?", faq_4_a: "La seguridad es nuestra prioridad. Firmamos un NDA antes de iniciar. Además, operamos bajo políticas de 'Zero-Data-Retention' con las APIs de OpenAI, lo que significa que tu información privada NUNCA se utiliza para entrenar modelos públicos.",
-                faq_5_q: "¿El servicio de soporte incluye actualizaciones?", faq_5_a: "Sí. El campo de la Inteligencia Artificial avanza cada semana. Nuestro plan de 'Mantenimiento y Soporte' garantiza que tu infraestructura (VPS/Cloud) esté en línea 24/7 y que tus flujos se actualicen automáticamente cuando salgan modelos más rápidos o económicos.",
-                roi_title: "Calculadora de <span class='text-gold'>Fricción</span>", roi_sub: "¿Cuánto capital estás perdiendo por no automatizar?",
-                roi_label_1: "Horas manuales perdidas a la semana:", roi_label_2: "Costo operativo por hora (USD):", roi_result_text: "Fuga de Capital Mensual", roi_result_sub: "Nuestra arquitectura centralizada recupera este margen para tu empresa.",
                 contact_title: "Inicia la <span class='text-gold'>Evolución</span>", contact_sub: "Solicita tu Readiness Audit y descubre tu potencial de escalabilidad.",
-                form_name: "Nombre del Directivo", form_company: "Empresa / Negocio B2B", form_email: "Correo Corporativo", form_service: "Servicio de Interés", form_message: "¿Cuál es el mayor cuello de botella en tu operación hoy?", form_btn: "SISTEMA EN LÍNEA",
+                form_name: "Nombre del Directivo", form_company: "Empresa / Negocio B2B", form_email: "Correo Corporativo", form_service: "Servicio de Interés", form_message: "¿Cuál es el mayor cuello de botella en su operación hoy?", form_btn: "SISTEMA EN LÍNEA",
                 success_title: "Señal Recibida", success_sub: "Nuestros algoritmos han procesado tu solicitud. Nos pondremos en contacto pronto.",
                 footer_terms: "Términos", footer_privacy: "Privacidad", footer_ceo: "Admin & Fundador", footer_rights: "Todos los derechos reservados."
             },
             en: {
-                nav_system: "Core System", nav_filosofia: "Philosophy", nav_servicios: "Architecture", nav_proceso: "Deployment", nav_faq: "FAQ", nav_contacto: "Audit", nav_contacto_btn: "START YOUR EVOLUTION",
+                nav_system: "Core System", nav_filosofia: "Philosophy", nav_servicios: "Architecture", nav_proceso: "Deployment", nav_ejemplos: "Impact", nav_roi: "ROI", nav_faq: "FAQ", nav_contacto: "Audit", nav_contacto_btn: "START YOUR EVOLUTION",
                 hero_title_1: "Algorithmic Evolution", hero_title_2: "For Your B2B Business", hero_desc: "We turn complex corporate processes into autonomous architectures. Recover your team's hours and scale limitlessly.", hero_btn: "Request Audit",
+                stat_1: "Custom Built", stat_2: "Core Operation", stat_3: "Data Retention", stat_4: "Guaranteed",
                 phil_title: "Our <span class='text-gold'>Philosophy</span>",
                 phil_m_title: "Mission", phil_m_text: "Map complex processes and transform them into agile architectures. We seek to maximize your ROI by giving your team back hundreds of operational hours monthly through robust automation with n8n.",
                 phil_v_title: "Vision", phil_v_text: "To be the invisible technological arm of leading B2B companies. Establishing AI not as an isolated tool, but as the core fabric that connects, decides, and executes 24/7.",
@@ -516,16 +542,18 @@
                 process_title: "Work <span class='text-gold'>Methodology</span>", process_sub: "Onboarding and Structured Deployment",
                 step1_t: "Kick-off & Agreements", step1_d: "Strategic meeting to define objectives. We sign the NDA (Non-Disclosure Agreement) to guarantee the total security of corporate information.",
                 step2_t: "Access Management", step2_d: "Through encrypted security vaults (e.g. LastPass), you provide us access to your tools. We configure your own API key (OpenAI) for total financial control.",
-                step3_t: "Transparent Development", step3_d: "We maintain exclusive communication (Slack/WhatsApp) and a project board (Trello/Notion) where you can observe the progress of each algorithmic flow in real time.",
+                step3_t: "Transparent Development", step3_d: "We maintain exclusive communication and a project board where you can observe the progress of each algorithmic flow in real time without black boxes.",
                 step4_t: "Launch & Return", step4_d: "Operations are moved to a secure server. Your team delegates manual tasks to AI and focuses directly on scaling the business.",
+                ex_title: "Impact <span class='text-gold'>Evidence</span>", ex_sub: "Real architectures designed for the corporate world.",
+                ex_1_title: "Strategic Mapping", ex_1_desc: "Detailed visual diagnosis. We identify the exact bottlenecks in your operation and draw the architectural blueprint before writing a single line of code.",
+                ex_2_title: "Algorithmic Architecture", ex_2_desc: "Technical implementation of the operational core within n8n. Multiple interconnected AI agents making decisions and executing actions in the cloud 24/7.",
+                roi_title: "Friction <span class='text-gold'>Calculator</span>", roi_sub: "How much capital are you losing monthly by not automating?",
+                roi_label_1: "Manual hours lost per week:", roi_label_2: "Operational cost per hour (USD):", roi_result_text: "Estimated Capital Leak (Monthly)", roi_result_sub: "Our centralized architecture recovers this margin of error and turns it into pure profit for your company.",
                 faq_title: "Frequently Asked <span class='text-gold'>Questions</span>",
                 faq_1_q: "Do I need technical knowledge in my team?", faq_1_a: "Absolutely not. AURAIC AI designs and maintains the entire backend architecture (n8n). Your team will continue using their daily tools (WhatsApp, Gmail, Excel, or current CRM), but now AI will do the heavy lifting invisibly.",
                 faq_2_q: "How long does implementation take?", faq_2_a: "The 'AI Readiness Audit' phase takes 5 to 7 business days. Once the architectural blueprint is approved, the 'Core' development is usually functional and generating ROI in an average of 2 to 3 weeks, depending on complexity.",
                 faq_3_q: "What if my current software doesn't have an API?", faq_3_a: "Integration is our specialty. If a software is legacy or closed, we use custom Webhooks or RPA (Robotic Process Automation) to extract and send information, ensuring 'isolated' systems communicate with AI.",
                 faq_4_q: "Is my corporate data secure with AI?", faq_4_a: "Security is our priority. We sign an NDA before starting. Furthermore, we operate under 'Zero-Data-Retention' policies with OpenAI APIs, meaning your private information is NEVER used to train public models.",
-                faq_5_q: "Does the support service include updates?", faq_5_a: "Yes. The AI field advances weekly. Our 'Maintenance and Support' plan ensures your infrastructure (VPS/Cloud) is online 24/7 and your flows are automatically updated when faster or cheaper models are released.",
-                roi_title: "Friction <span class='text-gold'>Calculator</span>", roi_sub: "How much capital are you losing by not automating?",
-                roi_label_1: "Manual hours lost per week:", roi_label_2: "Operational cost per hour (USD):", roi_result_text: "Monthly Capital Leak", roi_result_sub: "Our centralized architecture recovers this margin for your company.",
                 contact_title: "Start the <span class='text-gold'>Evolution</span>", contact_sub: "Request your Readiness Audit and discover your scalability potential.",
                 form_name: "Executive Name", form_company: "B2B Company", form_email: "Corporate Email", form_service: "Service of Interest", form_message: "What is the biggest bottleneck in your operation today?", form_btn: "SYSTEM ONLINE",
                 success_title: "Signal Received", success_sub: "Our algorithms have processed your request. We will contact you soon.",
@@ -535,12 +563,12 @@
 
         const legalTexts = {
             es: {
-                terms: { title: "Términos y Condiciones del Servicio (B2B)", content: `<p>Al solicitar una auditoría y/o establecer una relación comercial con <strong>AURAIC AI</strong>, el cliente acepta los siguientes términos rectores de prestación de servicios:</p><ul><li><strong>1. Estructura Fiscal y Facturación:</strong> AURAIC AI opera bajo el régimen formal de Persona Física con Actividad Empresarial. Garantizamos la emisión de comprobantes fiscales (facturas) correspondientes a los servicios para su debida deducción corporativa B2B.</li><li><strong>2. Gestión de APIs y Costos a Terceros:</strong> AURAIC AI diseña e implementa flujos tecnológicos avanzados. Sin embargo, <strong>el cliente es estrictamente responsable de crear su propia cuenta en OpenAI API</strong> e introducir métodos de pago propios. Nosotros solicitaremos una "API Key" para que el cliente cubra de forma transparente su propio consumo de "tokens", desligando a nuestra agencia de cobros imprevistos.</li><li><strong>3. Limitación de Responsabilidad Técnica:</strong> Nuestras infraestructuras algorítmicas se intercomunican con servidores ajenos. AURAIC AI <strong>NO es responsable</strong> por fallas de servicio, caídas de conexión, mantenimientos de red o cambios de políticas originados por OpenAI, sistemas en la nube de n8n o software de terceros.</li><li><strong>4. Hosting Operativo:</strong> Se exhorta la contratación de nuestros planes de Mantenimiento para asegurar el alojamiento estable en servidores VPS (DigitalOcean, Railway) o n8n Cloud.</li></ul>` },
-                privacy: { title: "Políticas de Privacidad y Seguridad Corporativa", content: `<p><strong>AURAIC AI</strong> protege rigurosamente la propiedad intelectual y operativa de nuestros socios corporativos, en adhesión a las normativas de protección de datos vigentes y propiedad industrial.</p><ul><li><strong>1. Acuerdo de Confidencialidad (NDA):</strong> Antes de iniciar la fase de 'IA Readiness Audit', requerimos la firma mutua de un Acuerdo de Confidencialidad (NDA). Esto brinda seguridad jurídica absoluta para su empresa antes de cedernos el acceso a sus datos.</li><li><strong>2. Bóvedas de Acceso Técnico:</strong> Todo acceso otorgado a AURAIC AI será administrado mediante gestores de credenciales encriptados (como LastPass o equivalentes), asegurando que la información se maneje con extrema seguridad.</li><li><strong>3. Zero-Data Retention:</strong> Garantizamos que la información de sus clientes y finanzas NO se utilizará para entrenar bases de datos públicas de Modelos de Lenguaje (ej. ChatGPT/OpenAI). Configuramos sus modelos bajo estrictas normativas API empresariales.</li><li><strong>4. Propiedad de Marca:</strong> AURAIC AI y su identidad de marca gráfica/verbal están debidamente protegidos por registro institucional, limitando el uso no autorizado.</li></ul>` }
+                terms: { title: "Términos y Condiciones del Servicio (B2B)", content: `<div class="space-y-4 text-silver/80"><p>Al solicitar una auditoría y/o establecer una relación comercial con <strong class="text-gold">AURAIC AI</strong>, el cliente acepta los siguientes términos rectores de prestación de servicios:</p><ul class="list-disc pl-5 space-y-2"><li><strong class="text-gold-light">Estructura Fiscal y Facturación:</strong> AURAIC AI opera bajo el régimen formal de Persona Física con Actividad Empresarial. Garantizamos la emisión de comprobantes fiscales correspondientes para su debida deducción corporativa B2B.</li><li><strong class="text-gold-light">Gestión de APIs y Costos a Terceros:</strong> El cliente es estrictamente responsable de crear su propia cuenta en OpenAI API e introducir métodos de pago propios. Nosotros solicitaremos una "API Key" para que el cliente cubra de forma transparente su propio consumo, desligando a nuestra agencia de cobros imprevistos.</li><li><strong class="text-gold-light">Limitación de Responsabilidad Técnica:</strong> Nuestras infraestructuras se intercomunican con servidores ajenos. AURAIC AI no es responsable por fallas de servicio, caídas de conexión o cambios de políticas originados por OpenAI, n8n o software de terceros.</li></ul></div>` },
+                privacy: { title: "Políticas de Privacidad y Seguridad Corporativa", content: `<div class="space-y-4 text-silver/80"><p><strong class="text-gold">AURAIC AI</strong> protege rigurosamente la propiedad intelectual y operativa de nuestros socios corporativos, en adhesión a las normativas de protección de datos vigentes.</p><ul class="list-disc pl-5 space-y-2"><li><strong class="text-gold-light">Acuerdo de Confidencialidad (NDA):</strong> Antes de iniciar la fase de auditoría, requerimos la firma mutua de un NDA. Esto brinda seguridad jurídica absoluta para su empresa.</li><li><strong class="text-gold-light">Bóvedas de Acceso Técnico:</strong> Todo acceso otorgado a AURAIC AI será administrado mediante gestores de credenciales encriptados (como LastPass o equivalentes).</li><li><strong class="text-gold-light">Zero-Data Retention:</strong> Garantizamos que la información de sus clientes NO se utilizará para entrenar bases de datos públicas de Modelos de Lenguaje (ej. ChatGPT).</li><li><strong class="text-gold-light">Propiedad de Marca:</strong> AURAIC AI y su identidad están debidamente protegidos por registro institucional.</li></ul></div>` }
             },
             en: {
-                terms: { title: "Terms and Conditions of Service (B2B)", content: `<p>By requesting an audit and/or establishing a commercial relationship with <strong>AURAIC AI</strong>, the client accepts the following guiding terms of service delivery:</p><ul><li><strong>1. Tax Structure and Billing:</strong> AURAIC AI operates under a formal business legal regime. We guarantee the issuance of tax receipts (invoices) corresponding to the services for proper B2B corporate deduction.</li><li><strong>2. API Management and Third-Party Costs:</strong> AURAIC AI designs and implements advanced technological flows. However, <strong>the client is strictly responsible for creating their own OpenAI API account</strong> and entering their own payment methods. We will request an "API Key" so the client transparently covers their own "token" consumption, detaching our agency from unforeseen charges.</li><li><strong>3. Limitation of Technical Liability:</strong> Our algorithmic infrastructures intercommunicate with external servers. AURAIC AI <strong>IS NOT responsible</strong> for service failures, connection drops, network maintenance, or policy changes originating from OpenAI, n8n cloud systems, or third-party software.</li><li><strong>4. Operational Hosting:</strong> We strongly encourage contracting our Maintenance plans to ensure stable hosting on VPS servers (DigitalOcean, Railway) or n8n Cloud.</li></ul>` },
-                privacy: { title: "Privacy and Corporate Security Policies", content: `<p><strong>AURAIC AI</strong> rigorously protects the intellectual and operational property of our corporate partners, in adherence to current data protection regulations and industrial property.</p><ul><li><strong>1. Non-Disclosure Agreement (NDA):</strong> Before starting the 'AI Readiness Audit' phase, we require the mutual signing of a Non-Disclosure Agreement (NDA). This provides absolute legal security for your company before granting us access to your data.</li><li><strong>2. Technical Access Vaults:</strong> All access granted to AURAIC AI will be managed through encrypted credential managers (such as LastPass or equivalent), ensuring information is handled with extreme security.</li><li><strong>3. Zero-Data Retention:</strong> We guarantee that your client and financial information will NOT be used to train public Language Model databases (e.g., ChatGPT/OpenAI). We configure your models under strict corporate API regulations.</li><li><strong>4. Brand Ownership:</strong> AURAIC AI and its graphic/verbal brand identity are duly protected by institutional registration, limiting unauthorized use.</li></ul>` }
+                terms: { title: "Terms and Conditions of Service (B2B)", content: `<div class="space-y-4 text-silver/80"><p>By requesting an audit and/or establishing a commercial relationship with <strong class="text-gold">AURAIC AI</strong>, the client accepts the following guiding terms of service delivery:</p><ul class="list-disc pl-5 space-y-2"><li><strong class="text-gold-light">Tax Structure and Billing:</strong> AURAIC AI operates under a formal business legal regime. We guarantee the issuance of tax receipts for proper B2B corporate deduction.</li><li><strong class="text-gold-light">API Management and Third-Party Costs:</strong> The client is strictly responsible for creating their own OpenAI API account and entering payment methods. We will request an "API Key" so the client covers their own consumption transparently.</li><li><strong class="text-gold-light">Limitation of Technical Liability:</strong> Our infrastructures intercommunicate with external servers. AURAIC AI is not responsible for service failures, connection drops, or policy changes originating from OpenAI, n8n, or third-party software.</li></ul></div>` },
+                privacy: { title: "Privacy and Corporate Security Policies", content: `<div class="space-y-4 text-silver/80"><p><strong class="text-gold">AURAIC AI</strong> rigorously protects the intellectual and operational property of our corporate partners, in adherence to current data protection regulations.</p><ul class="list-disc pl-5 space-y-2"><li><strong class="text-gold-light">Non-Disclosure Agreement (NDA):</strong> Before starting the audit phase, we require the mutual signing of an NDA. This provides absolute legal security.</li><li><strong class="text-gold-light">Technical Access Vaults:</strong> All access granted to AURAIC AI will be managed through encrypted credential managers (such as LastPass or equivalent).</li><li><strong class="text-gold-light">Zero-Data Retention:</strong> We guarantee that your client information will NOT be used to train public Language Model databases (e.g., ChatGPT).</li><li><strong class="text-gold-light">Brand Ownership:</strong> AURAIC AI and its identity are duly protected by institutional registration.</li></ul></div>` }
             }
         };
 
@@ -562,7 +590,7 @@
         document.getElementById('lang-toggle-mobile').addEventListener('click', toggleLanguage);
 
         /* =========================================
-           FUNCIONES DEL MODAL
+           FUNCIONES DEL MODAL LEGAL
         ========================================= */
         function abrirModalLegal(type) {
             document.getElementById('modal-title').innerHTML = legalTexts[currentLang][type].title;
@@ -581,7 +609,7 @@
         document.getElementById('modal-legal').addEventListener('click', (e) => { if (e.target.id === 'modal-legal') cerrarModalLegal(); });
 
         /* =========================================
-           OBSERVER (ANIMACIONES SIMPLES)
+           OBSERVER (ANIMACIONES)
         ========================================= */
         document.addEventListener("DOMContentLoaded", function() {
             const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -591,11 +619,10 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { root: null, threshold: 0.15 });
+            }, { root: null, threshold: 0.1 });
 
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
             
-            // Activar las primeras que ya están en pantalla
             setTimeout(() => { 
                 document.querySelectorAll('.reveal').forEach(el => { 
                     const rect = el.getBoundingClientRect(); 
@@ -615,8 +642,8 @@
 
             const navbar = document.getElementById('navbar');
             if(navbar) {
-                if (currentScroll > 50) { navbar.classList.add('bg-[#050505]/95', 'shadow-md', 'border-b', 'border-gold/20'); } 
-                else { navbar.classList.remove('bg-[#050505]/95', 'shadow-md', 'border-b', 'border-gold/20'); }
+                if (currentScroll > 50) { navbar.classList.add('bg-[#030303]/95', 'shadow-[0_4px_30px_rgba(0,0,0,0.5)]'); navbar.classList.remove('border-b', 'border-transparent'); } 
+                else { navbar.classList.remove('bg-[#030303]/95', 'shadow-[0_4px_30px_rgba(0,0,0,0.5)]'); }
             }
 
             const processSection = document.getElementById('process-container');
@@ -652,19 +679,24 @@
         /* =========================================
            WEBHOOK N8N Y MENU MÓVIL
         ========================================= */
-        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
-        document.querySelectorAll('#mobile-menu a').forEach(l => l.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden')));
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        document.querySelectorAll('#mobile-menu a').forEach(l => l.addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }));
 
         document.getElementById('contact-form')?.addEventListener('submit', async function(e) {
             e.preventDefault(); 
             const submitBtn = document.getElementById('submit-btn');
             const originalHtml = submitBtn.innerHTML;
             
-            submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 text-deep-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+            submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 sm:h-6 sm:w-6 text-deep-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
             submitBtn.disabled = true;
 
             try {
-                // AQUÍ ESTÁ TU WEBHOOK DE N8N CONECTADO Y VERIFICADO
                 const response = await fetch(this.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(this))) });
                 if (response.ok || response.type === 'opaque') {
                     this.style.display = 'none';
